@@ -1,29 +1,114 @@
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import React, { useState, useContext } from "react";
+import { AuthContext } from "../context/authContext";
+import { useHttpClient } from "../hooks/httpHook";
 
-function BasicExample() {
-  return (
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
+function Login() {
+    const auth = useContext(AuthContext);
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [isLoginMode, setIsLoginMode] = useState(true);
+    const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
-  );
+    const handleNameChange = (event) => {
+        setName(event.target.value);
+    };
+
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    };
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
+
+    const handleSubmit = async (event) => {
+        if (isLoginMode) {
+            try {
+                event.preventDefault();
+                // Send a request to the server with the email and password
+                let url = "http://localhost:5000/api/users/login";
+                let method = "POST";
+                let body = JSON.stringify({
+                    email: email,
+                    password: password,
+                });
+                let headers = {
+                    "Content-Type": "application/json",
+                };
+
+                const response = await sendRequest(url, method, body, headers);
+                auth.login(response.userId, response.token);
+
+                console.log(response);
+            } catch (err) {}
+        } else {
+            try {
+                event.preventDefault();
+
+                let body = JSON.stringify({
+                    name: name,
+                    email: email,
+                    password: password,
+                });
+                let headers = {
+                    "Content-Type": "application/json",
+                };
+                const responseData = await sendRequest(
+                    "http://localhost:5000/api/users/signup",
+                    "POST",
+                    body,
+                    headers
+                );
+                console.log("before login");
+                auth.login(responseData.userId, responseData.token);
+            } catch (err) {}
+        }
+    };
+
+    const handleModeclick = () => {
+        setIsLoginMode(!isLoginMode);
+    };
+
+    return (
+        <div className="flex flex-col">
+            <button
+                onClick={() => {
+                    handleModeclick();
+                }}
+            >
+                {isLoginMode ? "login" : "sign up"}
+            </button>
+            <form onSubmit={handleSubmit}>
+                <label hidden={isLoginMode}>
+                    Name:
+                    <input
+                        type="name"
+                        value={name}
+                        onChange={handleNameChange}
+                    />
+                </label>
+                <label>
+                    Email:
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={handleEmailChange}
+                    />
+                </label>
+                <label>
+                    Password:
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={handlePasswordChange}
+                    />
+                </label>
+                <button type="submit">Login</button>
+            </form>
+            {error && <p>{error}</p>}
+        </div>
+    );
 }
 
-export default BasicExample;
+export default Login;

@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useHttpClient } from "../hooks/httpHook";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import classes from "../fullJobInformation.module.css";
 
 function JobDescription() {
     
@@ -25,41 +26,21 @@ function JobDescription() {
     // useJobInfo()
 
     return (
+        <div className={classes.full}>
+          <Card style={{ width: '50rem', height: '30rem' }}>
+          <Card.Body>
+            <Card.Title>Job Role</Card.Title>
+            <Card.Text>{role}</Card.Text>
 
-        <div className="full-jon-information">
-        <Card style={{ width: '50rem', height: '50rem' }}>
-        <Card.Body>
-          <Card.Title>Job Role</Card.Title>
-          <Card.Text>
-          {role}
-        </Card.Text>
-          <Card.Title>Card Title</Card.Title>
-          <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-          <Card.Title>Card Title</Card.Title>
-          <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-          <Card.Title>Card Title</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
-        </Card.Body>
-      </Card>
-                    <div className="job-role"> :  </div>
+            <Card.Title>Company</Card.Title>
+            <Card.Text>{company} {''} 
+              <Button size="sm" href={link}>Visit them</Button> 
+            </Card.Text>
 
-                    <div className="company-name"> Company: {company} </div>
-                    
-                    <div className="company-website"> Company Link: </div>
-                    <a href={link}> {link} </a>
-
-                    <div className="job-description"> Job Description </div>
-                    <div className=""> {description} </div>
+            <Card.Title>Job Description</Card.Title>
+            <Card.Text>{description}</Card.Text>          
+          </Card.Body>
+          </Card>             
         </div>
     );
 }

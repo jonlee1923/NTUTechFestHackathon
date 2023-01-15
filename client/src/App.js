@@ -2,16 +2,16 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState, useEffect } from "react";
 
-import Home from "./pages/homePage";
-import Login from "./pages/loginPage";
-import Profile from "./pages/profilePage";
-import JobListings from "./pages/jobListingsPage";
-import AppNavbar from "./pages/navbar";
-import Footer from "./pages/footer";
+import Home from "./pages/homePage/homePage";
+import Login from "./pages/loginPage/loginPage";
+import Profile from "./pages/profilePage/profilePage";
+import JobListings from "./pages/jobListingPage/jobListingsPage";
+import AppNavbar from "./pages/navbar/navbar";
+import Footer from "./pages/footer/footer";
 
-import JobDescription from "./pages/fullJobInformation"
+import JobDescription from "./pages/fullJobInformation/fullJobInformation"
 
-import EditImage from "./pages/editImage";
+import EditImage from "./pages/editImage/editImage";
 
 
 import { AuthContext } from "./context/authContext";

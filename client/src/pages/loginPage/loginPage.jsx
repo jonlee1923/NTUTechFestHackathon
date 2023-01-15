@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import { AuthContext } from "../context/authContext";
-import { useHttpClient } from "../hooks/httpHook";
+import { AuthContext } from "../../context/authContext";
+import { useHttpClient } from "../../hooks/httpHook";
 import loginStyle from "./login.module.css";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";

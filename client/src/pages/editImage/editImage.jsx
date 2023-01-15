@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
-import { useHttpClient } from "../hooks/httpHook";
-import { AuthContext } from "../context/authContext";
+import { useHttpClient } from "../../hooks/httpHook";
+import { AuthContext } from "../../context/authContext";
 
 export default function Image() {
     const auth = useContext(AuthContext);

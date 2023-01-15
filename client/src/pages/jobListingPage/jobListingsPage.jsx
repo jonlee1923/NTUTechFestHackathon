@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Job from "./renderJob.jsx";
-import { useHttpClient } from "../hooks/httpHook";
+import Job from "./../renderJob/renderJob";
+import { useHttpClient } from "../../hooks/httpHook";
 import { Container, Form, Button, Pagination } from "react-bootstrap";
 
 export default function JobListings() {

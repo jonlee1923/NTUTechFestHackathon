@@ -93,7 +93,9 @@ const updateOne = asyncHandler(async (req, res) => {
 // @route   GET /api/users/me
 // @access  Private
 const getMe = asyncHandler(async (req, res) => {
-    res.status(200).json(req.user);
+    const userId = req.params.uid;
+    const user = await User.findOne({ userId });
+    res.status(200).json(user);
 });
 
 // Generate JWT

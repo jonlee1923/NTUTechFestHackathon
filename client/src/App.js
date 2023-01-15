@@ -4,21 +4,24 @@ import Login from "./components/login";
 import { AuthContext } from "./context/authContext";
 import { useAuth } from "./hooks/authHook";
 
+import DisplayJobsListing from "./components/jobs";
+
 function App() {
     const { token, login, logout, userId } = useAuth();
 
     return (
-        <AuthContext.Provider
-            value={{
-                isLoggedIn: !!token, // !! converts to true and false
-                token: token, //need token to send request in the app
-                login: login,
-                logout: logout,
-                userId: userId,
-            }}
-        >
-            <Login />
-        </AuthContext.Provider>
+        <DisplayJobsListing />
+        // <AuthContext.Provider
+        //     value={{
+        //         isLoggedIn: !!token, // !! converts to true and false
+        //         token: token, //need token to send request in the app
+        //         login: login,
+        //         logout: logout,
+        //         userId: userId,
+        //     }}
+        // >
+        //     <Login />
+        // </AuthContext.Provider>
     );
 }
 

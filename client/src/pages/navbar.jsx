@@ -14,7 +14,7 @@ function AppNavbar() {
   return (
     <Navbar bg="light" expand="lg" className={classes.navbar}>
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav className="me-auto">
@@ -41,7 +41,7 @@ function AppNavbar() {
             />
             <Button variant="outline-success">Search</Button>
           </Form>
-          <Nav.Link className="ms-auto" href="#link"><Person size={40} className={classes.profile} /></Nav.Link>
+          <Nav.Link className="ms-auto" href="/profile"><Person size={40} className={classes.profile} /></Nav.Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>

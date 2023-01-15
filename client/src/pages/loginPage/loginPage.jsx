@@ -1,16 +1,23 @@
 import React, { useState, useContext } from "react";
-import { AuthContext } from "../context/authContext";
-import { useHttpClient } from "../hooks/httpHook";
-// import Image from "./image";
-// import Jobs from "./jobs";
+import { AuthContext } from "../../context/authContext";
+import { useHttpClient } from "../../hooks/httpHook";
+import loginStyle from "./login.module.css";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 function Login() {
   const auth = useContext(AuthContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoginMode, setIsLoginMode] = useState(true);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -22,6 +29,10 @@ function Login() {
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
+  };
+
+  const handleConfirmPasswordChange = (event) => {
+    setConfirmPassword(event.target.value);
   };
 
   const handleSubmit = async (event) => {
@@ -40,8 +51,9 @@ function Login() {
         };
 
         const response = await sendRequest(url, method, body, headers);
-        auth.login(response._id, response.token);
-        console.log(response._id, response.token);
+        auth.login(response.userId, response.token);
+
+        console.log(response);
       } catch (err) {}
     } else {
       try {
@@ -61,28 +73,25 @@ function Login() {
           body,
           headers
         );
+
+        if (password !== confirmPassword) {
+          handleShow();
+
+          console.log("Passwords do not match");
+        } else {
+          auth.login(responseData.userId, responseData.token);
+        }
         console.log("before login");
-        console.log(responseData.userId);
-        auth.login(responseData.userId, responseData.token);
       } catch (err) {}
     }
   };
 
   const handleModeclick = () => {
-    console.log("Context Token",auth.token);
-    console.log("Context UserId",auth.userId);
     setIsLoginMode(!isLoginMode);
   };
 
   return (
-    <div className="flex flex-col">
-      <button
-        onClick={() => {
-          handleModeclick();
-        }}
-      >
-        {isLoginMode ? "login" : "sign up"}
-      </button>
+    <div className={loginStyle.loginContainer}>
       <form onSubmit={handleSubmit}>
         <label hidden={isLoginMode}>
           Name:
@@ -100,11 +109,52 @@ function Login() {
             onChange={handlePasswordChange}
           />
         </label>
-        <button type="submit">Login</button>
+        <label hidden={isLoginMode}>
+          Confirm Password:
+          <input
+            type="Confirm password"
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
+          />
+        </label>
+        <Button className={loginStyle.buttons} type="submit">
+          {" "}
+          {isLoginMode ? "Login" : "Submit"}{" "}
+        </Button>
       </form>
 
-      {/* <Image /> */}
-      {/* <Jobs/> */}
+      <br></br>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Passwords entered do not match!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Please re-enter the passwords again! Click 'Understood' or the 'X"
+          located at the top right to dismiss this message.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            Understood
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <div>
+        <Button
+          className={loginStyle.buttons}
+          onClick={() => {
+            handleModeclick();
+          }}
+        >
+          {isLoginMode ? "Sign up" : "Login"}
+        </Button>
+      </div>
+
       {error && <p>{error}</p>}
     </div>
   );

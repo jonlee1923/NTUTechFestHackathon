@@ -1,0 +1,46 @@
+.firstdiv{
+    background-color: #06768d;
+}
+.messagediv{
+    color:white;
+    display:flex;
+    justify-content: center;
+    height:400px;
+    padding:75px 0;
+}
+
+.messagediv h3{
+    margin:45px;
+}
+
+.messagediv img{
+    border-radius:10%;
+}
+
+.btndiv{
+    display:flex;
+    justify-content: center;
+    padding-bottom:50px;
+}
+.questionairebtn{
+    height:75px;
+    background-color: #41A317;
+}
+
+.reviews{
+    margin:50px;
+    display:flex;
+    justify-content: center;
+}
+
+.reviews p{
+    margin:20px;
+}
+
+.card{
+    width:85%;
+}
+
+.arrows{
+    margin:80px 20px;
+}

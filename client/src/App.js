@@ -50,8 +50,8 @@ function App() {
           {/* <Route
             path="/profile"
             element={logged ? <Profile /> : <Navigate to="/" />}
-          />
-          <Route
+          /> */}
+          {/* <Route
             path="/editimage"
             element={logged ? <EditImage /> : <Navigate to="/" />}
           /> */}
@@ -59,7 +59,6 @@ function App() {
 
           <Route path='/fullJobDescription'  element={<JobDescription />} />
           
-
           <Route path="/job-listings" element={<JobListings />} />
           <Route path="/editimage" element={<EditImage />} />
 

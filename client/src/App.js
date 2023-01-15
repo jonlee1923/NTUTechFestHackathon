@@ -5,7 +5,7 @@ import Login from "./pages/loginPage";
 import Profile from "./pages/profilePage";
 import AppNavbar from "./pages/navbar";
 import Footer from "./pages/footer";
-
+import JobDescription from "./pages/fullJobInformation"
 
 import { AuthContext } from "./context/authContext";
 import { useAuth } from "./hooks/authHook";
@@ -30,6 +30,8 @@ function App() {
           <Route path="/" element={<h1>HomePage</h1>} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path='/fullJobDescription'  element={<JobDescription />} />
+          
         </Routes>
       </BrowserRouter>
       <Footer />

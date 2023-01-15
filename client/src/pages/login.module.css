@@ -1,0 +1,19 @@
+.loginContainer{
+  width: 382px;  
+  overflow: hidden;  
+  margin: auto;  
+  margin: 20 0 0 450px;  
+  padding: 100px;  
+  border-radius: 15px ; 
+  }
+
+.buttonsContainer {
+  justify-content: space-between;
+  display: flex;
+}
+
+.buttons {
+  border-radius: 15px ; 
+  margin-top: 15px;
+  margin-left: 30%;
+}

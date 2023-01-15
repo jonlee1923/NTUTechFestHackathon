@@ -8,6 +8,9 @@ import Profile from "./pages/profilePage";
 import JobListings from "./pages/jobListingsPage";
 import AppNavbar from "./pages/navbar";
 import Footer from "./pages/footer";
+
+import JobDescription from "./pages/fullJobInformation"
+
 import EditImage from "./pages/editImage";
 
 
@@ -53,8 +56,13 @@ function App() {
             element={logged ? <EditImage /> : <Navigate to="/" />}
           /> */}
           <Route path="/profile" element={<Profile />} />
+
+          <Route path='/fullJobDescription'  element={<JobDescription />} />
+          
+
           <Route path="/job-listings" element={<JobListings />} />
           <Route path="/editimage" element={<EditImage />} />
+
         </Routes>
       </BrowserRouter>
       <Footer />

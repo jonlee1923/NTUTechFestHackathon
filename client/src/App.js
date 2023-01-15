@@ -5,13 +5,16 @@ import { useState, useEffect } from "react";
 import Home from "./pages/homePage";
 import Login from "./pages/loginPage";
 import Profile from "./pages/profilePage";
+import JobListings from "./pages/jobListingsPage";
 import AppNavbar from "./pages/navbar";
 import Footer from "./pages/footer";
 import EditImage from "./pages/editImage";
 
+
 import { AuthContext } from "./context/authContext";
 import { useAuth } from "./hooks/authHook";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
+
 
 function App() {
   const { token, login, logout, userId } = useAuth();
@@ -50,6 +53,7 @@ function App() {
             element={logged ? <EditImage /> : <Navigate to="/" />}
           /> */}
           <Route path="/profile" element={<Profile />} />
+          <Route path="/job-listings" element={<JobListings />} />
           <Route path="/editimage" element={<EditImage />} />
         </Routes>
       </BrowserRouter>

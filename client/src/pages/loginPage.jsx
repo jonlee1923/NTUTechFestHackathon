@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/authContext";
 import { useHttpClient } from "../hooks/httpHook";
+
 import loginStyle from "./login.module.css"
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -23,13 +24,18 @@ function Login() {
         setName(event.target.value);
     };
 
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value);
-    };
+// import Image from "./image";
+// import Jobs from "./jobs";
 
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-    };
+
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
 
     const handleConfirmPasswordChange = (event) => {
         setConfirmPassword(event.target.value);
@@ -50,15 +56,36 @@ function Login() {
                     "Content-Type": "application/json",
                 };
 
-                const response = await sendRequest(url, method, body, headers);
-                auth.login(response.userId, response.token);
 
-                console.log(response);
-            } catch (err) {}
-        } else {
-            try {
-                event.preventDefault();
+        const response = await sendRequest(url, method, body, headers);
+        auth.login(response._id, response.token);
+        console.log(response._id, response.token);
+      } catch (err) {}
+    } else {
+      try {
+        event.preventDefault();
 
+        let body = JSON.stringify({
+          name: name,
+          email: email,
+          password: password,
+        });
+        let headers = {
+          "Content-Type": "application/json",
+        };
+        const responseData = await sendRequest(
+          "http://localhost:5000/api/users/signup",
+          "POST",
+          body,
+          headers
+        );
+        console.log("before login");
+        console.log(responseData.userId);
+        auth.login(responseData.userId, responseData.token);
+      } catch (err) {}
+    }
+  };
+-
                 let body = JSON.stringify({
                     name: name,
                     email: email,
@@ -91,9 +118,41 @@ function Login() {
         }
     };
 
-    const handleModeclick = () => {
-        setIsLoginMode(!isLoginMode);
-    };
+  const handleModeclick = () => {
+    console.log("Context Token",auth.token);
+    console.log("Context UserId",auth.userId);
+    setIsLoginMode(!isLoginMode);
+  };
+
+
+  return (
+    <div className="flex flex-col">
+      <button
+        onClick={() => {
+          handleModeclick();
+        }}
+      >
+        {isLoginMode ? "login" : "sign up"}
+      </button>
+      <form onSubmit={handleSubmit}>
+        <label hidden={isLoginMode}>
+          Name:
+          <input type="name" value={name} onChange={handleNameChange} />
+        </label>
+        <label>
+          Email:
+          <input type="email" value={email} onChange={handleEmailChange} />
+        </label>
+        <label>
+          Password:
+          <input
+            type="password"
+            value={password}
+            onChange={handlePasswordChange}
+          />
+        </label>
+        <button type="submit">Login</button>
+      </form>
 
     return (
         <div className={loginStyle.loginContainer}>
@@ -165,8 +224,13 @@ function Login() {
             </div>
 
             {error && <p>{error}</p>}
-        </div>
-    );
+
+      {/* <Image /> */}
+      {/* <Jobs/> */}
+      {error && <p>{error}</p>}
+    </div>
+  );
+
 }
 
 export default Login;

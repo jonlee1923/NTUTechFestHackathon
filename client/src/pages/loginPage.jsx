@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/authContext";
 import { useHttpClient } from "../hooks/httpHook";
+import Image from "./image";
+import Jobs from "./jobs";
 
 function Login() {
     const auth = useContext(AuthContext);
@@ -38,9 +40,8 @@ function Login() {
                 };
 
                 const response = await sendRequest(url, method, body, headers);
-                auth.login(response.userId, response.token);
-
-                console.log(response);
+                auth.login(response._id, response.token);
+                console.log(response._id, response.token);
             } catch (err) {}
         } else {
             try {
@@ -61,6 +62,7 @@ function Login() {
                     headers
                 );
                 console.log("before login");
+                console.log(responseData.userId);
                 auth.login(responseData.userId, responseData.token);
             } catch (err) {}
         }
@@ -106,6 +108,9 @@ function Login() {
                 </label>
                 <button type="submit">Login</button>
             </form>
+
+            <Image />
+            {/* <Jobs/> */}
             {error && <p>{error}</p>}
         </div>
     );

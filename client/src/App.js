@@ -1,8 +1,11 @@
 import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import Login from "./pages/loginPage";
 import Profile from "./pages/profilePage";
 import AppNavbar from "./pages/navbar";
 import Footer from "./pages/footer";
+
 
 import { AuthContext } from "./context/authContext";
 import { useAuth } from "./hooks/authHook";

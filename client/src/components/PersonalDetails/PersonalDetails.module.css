@@ -1,0 +1,9 @@
+.card{
+    width:fit-content;
+    height:auto;
+    padding:20px;
+}
+
+.content{
+    font-size:15px;
+}

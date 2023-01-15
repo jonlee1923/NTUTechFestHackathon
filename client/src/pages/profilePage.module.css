@@ -1,0 +1,21 @@
+
+.card{
+    width:60%;
+    height:auto;
+    padding:20px;
+    margin: 20px 0;
+    box-sizing:border-box;
+}
+
+.userimage{
+    margin:0 18px 18px 18px;
+}
+
+.personaldetail{
+    margin-top:40px;
+}
+
+.editbtn{
+    position:absolute;
+    right:20px;
+}

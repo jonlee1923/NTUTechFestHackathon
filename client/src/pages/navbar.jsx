@@ -17,7 +17,7 @@ function AppNavbar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Job-Listing</Nav.Link>
+            <Nav.Link href="/job-listings">Job-Listing</Nav.Link>
             <Nav.Link href="#link">Career Options</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

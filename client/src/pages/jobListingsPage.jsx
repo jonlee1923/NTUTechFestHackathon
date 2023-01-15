@@ -18,7 +18,6 @@ export default function JobListings() {
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
 
-    const currentRecords = renderJobs.slice(indexOfFirstRecord,indexOfLastRecord);
     const pageNumbers = [...Array(nPages + 1).keys()].slice(1)
 
     useEffect(() => {
@@ -133,8 +132,8 @@ export default function JobListings() {
              <Button onClick={handleSearch} variant="outline-success">Search</Button>
             </Form>
             <p className="p-2 mt-3" style={{ fontWeight: 'bold' }}> Job listings found: {renderJobs.length}</p>
-            {renderJobs == '' ? null : renderJobs.map((d) => ( 
-                <Job data={d} />
+            {renderJobs == '' ? null : renderJobs.slice(indexOfFirstRecord, indexOfLastRecord).map((job) => ( 
+                <Job data={job} />
             ))}
             <Pagination 
              className="mx-5"

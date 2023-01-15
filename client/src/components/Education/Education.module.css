@@ -1,0 +1,18 @@
+
+.card{
+    width:fit-content;
+    height:auto;
+    padding:20px;
+}
+
+.content{
+    font-size:17px;
+}
+
+.title{
+    font-weight:500;
+}
+
+.course{
+    font-weight:300;
+}

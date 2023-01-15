@@ -1,13 +1,21 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
+const fileUpload = require("../middleware/fileUpload");
 const {
-  registerUser,
-  loginUser,
-  getMe,
-} = require('../controllers/userController')
-// const { protect } = require('../middleware/authMiddleware')
+    registerUser,
+    loginUser,
+    updateDp,
+    getMe,
+} = require("../controllers/userController");
 
-router.post('/signup', registerUser)
-router.post('/login', loginUser)
+router.post("/signup", registerUser);
 
-module.exports = router
+router.post("/login", loginUser);
+
+router.patch(
+    "/uploaddp/:uid",
+    fileUpload.single("image"), //extracts file from the image key
+    updateDp
+);
+
+module.exports = router;

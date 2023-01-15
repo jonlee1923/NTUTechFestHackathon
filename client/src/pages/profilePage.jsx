@@ -28,16 +28,17 @@ function Profile() {
 
     const getUser = async() => {
         const responseData = await sendRequest(
-            `http://localhost:5000/api/users/getme`,
+            `http://localhost:5000/api/users/profilepage/${auth.userId}`,
             "GET",
         );
         setUser(responseData);
+        console.log("user",user);
     }
 
     useEffect(()=>{
         getUser();
-        console.log("user",user);
-    },[]);
+    },[auth]);
+
   return (
     <Container>
       <Card className={classes.card}>
@@ -60,7 +61,7 @@ function Profile() {
             <Col>
               <PersonalDetails
                 className={classes.personaldetail}
-                profile={profile}
+                profile={user}
               />
             </Col>
           </Row>

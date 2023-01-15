@@ -17,6 +17,7 @@ function App() {
   const { token, login, logout, userId } = useAuth();
   const [logged,setLogged] = useState(false);
   console.log("app.js", token, userId, logged);
+
   useEffect(()=>{
     if(token){
         setLogged(true);
@@ -24,7 +25,7 @@ function App() {
     else{
         setLogged(false);
     }
-  },[token]);
+  },[token,userId]);
   return (
     <AuthContext.Provider
       value={{

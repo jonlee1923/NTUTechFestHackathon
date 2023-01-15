@@ -15,13 +15,22 @@ const userSchema = mongoose.Schema(
             type: String,
             required: [true, "Please add a password"],
         },
+        desc: {
+            type: String,
+        },
+        age: {
+            type: String,
+        },
         github: {
             type: String,
         },
-        resume: {
+        gpa: {
             type: String,
         },
         dp: {
+            type: String,
+        },
+        course: {
             type: String,
         },
     },

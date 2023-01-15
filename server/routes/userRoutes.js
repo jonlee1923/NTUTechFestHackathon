@@ -4,7 +4,7 @@ const fileUpload = require("../middleware/fileUpload");
 const {
     registerUser,
     loginUser,
-    updateDp,
+    updateOne,
     getMe,
 } = require("../controllers/userController");
 
@@ -13,9 +13,9 @@ router.post("/signup", registerUser);
 router.post("/login", loginUser);
 
 router.patch(
-    "/uploaddp/:uid",
+    "/updateOne/:uid",
     fileUpload.single("image"), //extracts file from the image key
-    updateDp
+    updateOne
 );
 
 module.exports = router;

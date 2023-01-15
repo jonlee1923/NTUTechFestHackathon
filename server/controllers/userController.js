@@ -68,13 +68,16 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 });
 
-const updateDp = asyncHandler(async (req, res) => {
+const updateOne = asyncHandler(async (req, res) => {
     const userId = req.params.uid;
 
     // Check for user email
     const user = await User.findOne({ userId });
+    const { age, desc } = req.body;
 
     user.dp = req.file.path;
+    user.age = age;
+    user.desc = desc
 
     try {
         await user.save();
@@ -104,5 +107,5 @@ module.exports = {
     registerUser,
     loginUser,
     getMe,
-    updateDp,
+    updateOne,
 };

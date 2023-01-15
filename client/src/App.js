@@ -3,13 +3,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Login from "./pages/loginPage";
 import Profile from "./pages/profilePage";
+import JobListings from "./pages/jobListingsPage";
 import AppNavbar from "./pages/navbar";
 import Footer from "./pages/footer";
-
 
 import { AuthContext } from "./context/authContext";
 import { useAuth } from "./hooks/authHook";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
+
 
 function App() {
   const { token, login, logout, userId } = useAuth();
@@ -30,6 +31,7 @@ function App() {
           <Route path="/" element={<h1>HomePage</h1>} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/job-listings" element={<JobListings />} />
         </Routes>
       </BrowserRouter>
       <Footer />

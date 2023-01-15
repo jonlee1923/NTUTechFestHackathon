@@ -5,7 +5,6 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-
 import {Person} from "react-bootstrap-icons"
 
 import classes from "./navbar.module.css";

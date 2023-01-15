@@ -15,6 +15,12 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, 'Please add a password'],
     },
+    github: {
+      type: String
+    },
+    resume: {
+      type: String
+    }
   },
   {
     timestamps: true,

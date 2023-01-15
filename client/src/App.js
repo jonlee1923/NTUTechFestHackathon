@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Login from "./components/login";
+import JobDescription from "./components/fullJobInformation";
 import { AuthContext } from "./context/authContext";
 import { useAuth } from "./hooks/authHook";
 
@@ -17,7 +18,7 @@ function App() {
                 userId: userId,
             }}
         >
-            <Login />
+            <JobDescription />
         </AuthContext.Provider>
     );
 }

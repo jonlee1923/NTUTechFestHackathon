@@ -72,13 +72,7 @@ function Login() {
 
     return (
         <div className="flex flex-col">
-            <button
-                onClick={() => {
-                    handleModeclick();
-                }}
-            >
-                {isLoginMode ? "login" : "sign up"}
-            </button>
+
             <form onSubmit={handleSubmit}>
                 <label hidden={isLoginMode}>
                     Name:
@@ -104,8 +98,17 @@ function Login() {
                         onChange={handlePasswordChange}
                     />
                 </label>
-                <button type="submit">Login</button>
+                <button type="submit"> {isLoginMode ? "login" : "submit"} </button>
             </form>
+
+            <button
+            onClick={() => {
+                handleModeclick();
+            }}
+            >
+            {isLoginMode ? "sign up" : "login" }
+            </button>
+
             {error && <p>{error}</p>}
         </div>
     );

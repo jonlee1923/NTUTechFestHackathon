@@ -40,12 +40,7 @@ function Login() {
 
       const response = await sendRequest(url, method, body, headers);
       auth.login(response._id, response.token);
-      console.log("testing", auth.isLoggedIn);
-      if (auth.isLoggedIn) {
-        navigate("/");
-      } else {
-        navigate("/signup");
-      }
+      navigate("/");      
     } catch (err) {}
   };
 

@@ -4,13 +4,17 @@ import Card from 'react-bootstrap/Card';
 import classes from "./fullJobInformation.module.css";
 import {FiMapPin} from "react-icons/fi";
 
+import {useLocation} from 'react-router-dom';
+
 function JobDescription() {
+    const {state} = useLocation();
+
+    const role = state.props.data.offeredRole
+    const company = state.props.data.companyName
+    const link = state.props.data.url
+    const description = state.props.data.jobDesc 
+    const location = state.props.data.location
     
-    const role = 'Programmer'
-    const company = 'Amazon'
-    const link = 'https://github.com'
-    const description = 'Programming for hackatons' 
-    const location = 'Singapore'
 
     return (
         <div className={classes.fullJobDescription}>

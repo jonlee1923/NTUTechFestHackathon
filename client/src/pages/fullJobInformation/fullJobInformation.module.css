@@ -9,10 +9,11 @@
 
 .card {
   width: 50rem;
-  height: 30rem;
+  height: 40rem;
   margin-top: 50px;
   justify-self:center;
   padding: 10px;
+  overflow-y: auto;
 }
 
 .jobRoleLoc {

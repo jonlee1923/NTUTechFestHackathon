@@ -10,6 +10,7 @@ import Footer from "./pages/footer/footer";
 import EditImage from "./pages/editImage/editImage";
 import JobDescription from "./pages/fullJobInformation/fullJobInformation";
 import JobListings from "./pages/jobListingPage/jobListingsPage";
+import Signup from "./pages/signupPage/signupPage";
 
 import { AuthContext } from "./context/authContext";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
@@ -20,12 +21,12 @@ function App() {
   console.log("app.js", token, userId, isLoggedIn);
 
   useEffect(() => {
-    if (token) {
+    if (isLoggedIn) {
       setLogged(true);
     } else {
       setLogged(false);
     }
-  }, [token, userId]);
+  }, [isLoggedIn]);
 
   return (
     <BrowserRouter>
@@ -33,22 +34,23 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route
           path="/profile"
-          element={isLoggedIn ? <Profile /> : <Navigate to="/login" />}
+          element={logged ? <Profile /> : <Navigate to="/login" />}
         />
         <Route
           path="/editimage"
-          element={isLoggedIn ? <EditImage /> : <Navigate to="/login" />}
+          element={logged ? <EditImage /> : <Navigate to="/login" />}
         />
         <Route
           path="/fullJobDescription"
-          element={isLoggedIn ? <JobDescription /> : <Navigate to="/login" />}
+          element={logged ? <JobDescription /> : <Navigate to="/login" />}
         />
 
         <Route
           path="/job-listings"
-          element={isLoggedIn ? <JobListings /> : <Navigate to="/login" />}
+          element={logged  ? <JobListings /> : <Navigate to="/login" />}
         />
       </Routes>
       <Footer />

@@ -15,7 +15,7 @@ const mongoose = require("mongoose");
 const getEducation = asyncHandler(async (req, res) => {
     const userId = req.params.uid;
     const educations = await Education.find({ creator: userId });
-    console.log("fetching edu")
+    console.log("fetching edu");
 
     res.status(200).json({
         educations: educations.map((education) =>
@@ -25,35 +25,62 @@ const getEducation = asyncHandler(async (req, res) => {
 });
 
 const createEducation = asyncHandler(async (req, res) => {
-  const userId = req.params.uid;
-  console.log(req.body);
-  const { name, course, datestart, dateend, grade, maxGrade, description } =
-    req.body;
-  createdEdu = new Education({
-    name,
-    course,
-    datestart,
-    dateend,
-    grade,
-    maxGrade,
-    description,
-  });
-  const user = await User.findOne({ userId });
-  try {
-    const sess = await mongoose.startSession();
-    sess.startTransaction();
-    await createdEdu.save({ session: sess });
-    user.education.push(createdEdu);
-    await user.save({ session: sess });
-    await sess.commitTransaction();
-  } catch (err) {
-    res.status(500);
-    console.log(err);
-    throw new Error(err.message);
-  }
+    const userId = req.params.uid;
+    console.log(req.body);
+    const { name, course, datestart, dateend, grade, maxGrade, description } =
+        req.body;
+    createdEdu = new Education({
+        name,
+        course,
+        datestart,
+        dateend,
+        grade,
+        maxGrade,
+        description,
+    });
+    const user = await User.findOne({ userId });
+    try {
+        const sess = await mongoose.startSession();
+        sess.startTransaction();
+        await createdEdu.save({ session: sess });
+        user.education.push(createdEdu);
+        await user.save({ session: sess });
+        await sess.commitTransaction();
+    } catch (err) {
+        res.status(500);
+        console.log(err);
+        throw new Error(err.message);
+    }
+});
+
+const updateEducation = asyncHandler(async (req, res) => {
+    const eduId = req.params.eduId;
+
+    // Check for user email
+    const education = await Education.findOne({ eduId });
+    const { name, course, datestart, dateend, grade, maxgrade, description } =
+        req.body;
+
+    education.name = name
+    education.course =course
+    education.datestart = datestart
+    education.dateend = dateend
+    education.grade = grade
+    education.maxgrade = maxgrade
+    education.description = description
+
+    try {
+        await education.save();
+    } catch (err) {
+        res.status(500);
+        throw new Error(
+            "Something went wrong, could not update please try again later."
+        );
+    }
 });
 
 module.exports = {
-  createEducation,
-  getEducation,
+    createEducation,
+    getEducation,
+    updateEducation
 };

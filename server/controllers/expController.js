@@ -7,7 +7,7 @@ const getExp = asyncHandler(async (req, res) => {
     const userId = req.params.uid;
     const experiences = await Experience.find({ creator: userId });
     console.log("fetching exp");
-    console.log(experiences)
+    console.log(experiences);
     res.status(200).json({
         experiences: experiences.map((experience) =>
             experience.toObject({ getters: true })
@@ -45,7 +45,34 @@ const createExperience = asyncHandler(async (req, res) => {
     }
 });
 
+const udpateExp = asyncHandler(async (req, res) => {
+    const expId = req.params.expId;
+
+    // Check for user email
+    const exp = await Experience.findOne({ expId });
+    const { name, position, datestart, dateend, country, description } =
+        req.body;
+
+    exp.name = name;
+    exp.position = position;
+    exp.datestart = datestart;
+    exp.dateend = dateend;
+
+    exp.country = country;
+    exp.description = description;
+
+    try {
+        await exp.save();
+    } catch (err) {
+        res.status(500);
+        throw new Error(
+            "Something went wrong, could not update please try again later."
+        );
+    }
+});
+
 module.exports = {
     createExperience,
-    getExp
+    getExp,
+    udpateExp,
 };

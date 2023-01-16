@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const {
-    getJobs, getCompanyJobs, applyJob
+    getJobs, getCompanyJobs, applyJob, createJob
 } = require('../controllers/jobsController')
 // const { protect } = require('../middleware/authMiddleware')
 

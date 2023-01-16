@@ -2,8 +2,9 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
-const Education  = require("../models/educationModel");
+const Education = require("../models/educationModel");
 const mongoose = require("mongoose");
+const { use } = require("../routes/userRoutes");
 
 // const {
 //     default: Education,
@@ -13,111 +14,115 @@ const mongoose = require("mongoose");
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-    const { name, email, password } = req.body;
+  const { name, email, password } = req.body;
 
-    if (!name || !email || !password) {
-        res.status(400);
-        throw new Error("Please add all fields");
-    }
+  if (!name || !email || !password) {
+    res.status(400);
+    throw new Error("Please add all fields");
+  }
 
-    // Check if user exists
-    const userExists = await User.findOne({ email });
+  // Check if user exists
+  const userExists = await User.findOne({ email });
 
-    if (userExists) {
-        res.status(400);
-        throw new Error("User already exists");
-    }
+  if (userExists) {
+    res.status(400);
+    throw new Error("User already exists");
+  }
 
-    // Hash password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+  // Hash password
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Create user
-    const user = await User.create({
-        name,
-        email,
-        password: hashedPassword,
+  // Create user
+  const user = await User.create({
+    name,
+    email,
+    password: hashedPassword,
+  });
+
+  if (user) {
+    res.status(201).json({
+      _id: user.id,
+      name: user.name,
+      email: user.email,
+      token: generateToken(user._id),
     });
-
-    if (user) {
-        res.status(201).json({
-            _id: user.id,
-            name: user.name,
-            email: user.email,
-            token: generateToken(user._id),
-        });
-    } else {
-        res.status(400);
-        throw new Error("Invalid user data");
-    }
+  } else {
+    res.status(400);
+    throw new Error("Invalid user data");
+  }
 });
 
 // @desc    Authenticate a user
 // @route   POST /api/users/login
 // @access  Public
 const loginUser = asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
+  const { email, password } = req.body;
 
-    // Check for user email
-    const user = await User.findOne({ email });
+  // Check for user email
+  const user = await User.findOne({ email });
 
-    if (user && (await bcrypt.compare(password, user.password))) {
-        res.json({
-            _id: user.id,
-            name: user.name,
-            email: user.email,
-            token: generateToken(user._id),
-        });
-    } else {
-        res.status(400);
-        throw new Error("Invalid credentials");
-    }
+  if (user && (await bcrypt.compare(password, user.password))) {
+    res.json({
+      _id: user.id,
+      name: user.name,
+      email: user.email,
+      token: generateToken(user._id),
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid credentials");
+  }
 });
 
 const updateOne = asyncHandler(async (req, res) => {
-    const userId = req.params.uid;
+  const userId = req.params.uid;
 
-    // Check for user email
-    const user = await User.findOne({ userId });
-    const { age, desc } = req.body;
+  // Check for user email
+  const user = await User.findOne({ userId });
+  const { name, age, desc } = req.body;
 
+  if (name) user.name = name;
+  if (age) user.age = age;
+  if (desc) user.desc = desc;
+
+  if (typeof req.file !== "undefined") {
     user.dp = req.file.path;
-    user.age = age;
-    user.desc = desc;
+  }
 
-    try {
-        await user.save();
-    } catch (err) {
-        res.status(500);
-        throw new Error(
-            "Something went wrong, could not update please try again later."
-        );
-    }
+  try {
+    await user.save();
+    res.send(JSON.stringify("success"));
+  } catch (err) {
+    res.status(500);
+    throw new Error(
+      "Something went wrong, could not update please try again later."
+    );
+  }
 });
-
 
 
 // @desc    Get user data
 // @route   GET /api/users/me
 // @access  Private
 const getMe = asyncHandler(async (req, res) => {
-    const userId = req.params.uid;
-    const user = await User.findOne({ userId });
-    res.status(200).json(user);
+  const userId = req.params.uid;
+  const user = await User.findOne({ userId });
+  res.status(200).json(user);
 });
 
 // Generate JWT
 const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: "30d",
-    });
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: "30d",
+  });
 };
 
 module.exports = {
-    registerUser,
-    loginUser,
-    getMe,
-    updateOne,
-    // createEducation,
-    // getEducation
+  registerUser,
+  loginUser,
+  getMe,
+  updateOne,
+  // createEducation,
+  // getEducation
 };

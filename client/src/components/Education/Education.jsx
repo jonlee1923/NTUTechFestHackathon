@@ -37,22 +37,27 @@ const Education = (props) => {
   }, []);
 
   return (
-    <Container className={classes.container}>
-      {educations.map((education,i) => {
-        return (
-          <div key={i}>
-            <p className={classes.title}>{education.name}</p>
-            <p>{education.course}</p>
-            <p>
-              {education.datestart}-{education.dateend}
-            </p>
-            <p>
-              Grade: {education.grade}/{education.maxgrade}
-            </p>
-          </div>
-        );
-      })}
-    </Container>
+    <div>
+      {educations.length === 0 && <h5>No Data</h5>}
+      {educations.length !== 0 && (
+        <Container className={classes.container}>
+          {educations.map((education, i) => {
+            return (
+              <div key={i}>
+                <p className={classes.title}>{education.name}</p>
+                <p>{education.course}</p>
+                <p>
+                  {education.datestart}-{education.dateend}
+                </p>
+                <p>
+                  Grade: {education.grade}/{education.maxgrade}
+                </p>
+              </div>
+            );
+          })}
+        </Container>
+      )}
+    </div>
   );
 };
 

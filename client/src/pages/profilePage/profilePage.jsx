@@ -60,7 +60,7 @@ function Profile() {
 
               <Row>
                 <Col>
-                  <UserImage className={classes.userimage} src={user.dp} />
+                  <UserImage className={classes.userimage} user={user} />
                 </Col>
                 <Col>
                   <PersonalDetails

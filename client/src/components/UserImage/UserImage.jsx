@@ -1,6 +1,7 @@
 import classes from "./UserImage.module.css";
 
 const UserImage = (props) => {
+  // console.log(props.user.dp)
   return (
     <div>
       {props.user && (

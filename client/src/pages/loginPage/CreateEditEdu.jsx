@@ -39,7 +39,7 @@ export default function CreateEditEdu() {
                 datestart: dateStart,
                 dateend: dateEnd,
                 grade: grade,
-                maxGrade: maxGrade,
+                maxgrade: maxgrade,
                 description: description,
             });
             let headers = {

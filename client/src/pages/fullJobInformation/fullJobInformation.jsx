@@ -4,8 +4,6 @@ import Card from 'react-bootstrap/Card';
 import classes from "./fullJobInformation.module.css";
 import {FiMapPin} from "react-icons/fi";
 import Modal from "react-bootstrap/Modal";
-import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
-import JobListings from '../jobListingPage/jobListingsPage';
 
 import {useLocation} from 'react-router-dom';
 
@@ -51,12 +49,13 @@ function JobDescription() {
                 </div> 
               </div> 
               &nbsp;
-              <Card.Title>Job Description</Card.Title>
-              <Card.Text>{description}</Card.Text>    
-
+               <Card.Title>Job Description</Card.Title>
+               <Card.Text >{description}</Card.Text>    
+              <br></br>
               <div className = {classes.applyButtonContainer}> 
                 <Button className = {classes.visitCompany} onClick={handleShow}>Apply Here</Button> 
               </div>
+              <br></br>
             </Card.Body>
           </Card>     
           

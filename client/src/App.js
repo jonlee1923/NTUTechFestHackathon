@@ -13,6 +13,7 @@ import { AuthContext } from "./context/authContext";
 import { useAuth } from "./hooks/authHook";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 
+
 function App() {
     const { token, userId, isLoggedIn } = useContext(AuthContext);
     const [logged,setLogged] = useState(false);

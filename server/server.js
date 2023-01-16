@@ -31,6 +31,7 @@ app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/jobs", require("./routes/jobRoutes"));
 app.use("/api/education", require("./routes/educationRoutes"));
 app.use("/api/experience", require("./routes/expRoutes"));
+app.use("/api/company", require("./routes/companyRoutes"));
 
 app.use(errorHandler);
 

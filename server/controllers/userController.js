@@ -101,44 +101,6 @@ const updateOne = asyncHandler(async (req, res) => {
   }
 });
 
-// const getEducation = asyncHandler(async (req, res) => {
-//     const userId = req.params.uid;
-//     const user = await User.findOne({ userId });
-//     res.status(200).json(user.education);
-// });
-
-// const createEducation = asyncHandler(async (req, res) => {
-//     const userId = req.params.uid;
-//     console.log(req.body)
-//     const { name, course, dateStart, dateEnd, grade, maxGrade, description } =
-//         req.body;
-//     createdEdu = new Education({
-//         name,
-//         course,
-//         dateStart,
-//         dateEnd,
-//         grade,
-//         maxGrade,
-//         description,
-//     });
-//     const user = await User.findOne({ userId });
-//     try {
-
-//         const sess = await mongoose.startSession();
-//         sess.startTransaction();
-//         await createdEdu.save({ session: sess });
-//         user.education.push(createdEdu);
-//         await user.save({ session: sess });
-//         await sess.commitTransaction();
-
-//     } catch (err) {
-//         res.status(500);
-//         console.log(err);
-//         throw new Error(
-//             err.message
-//         );
-//     }
-// });
 
 // @desc    Get user data
 // @route   GET /api/users/me

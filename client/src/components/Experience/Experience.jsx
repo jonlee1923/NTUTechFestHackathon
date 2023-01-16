@@ -31,23 +31,28 @@ const Experience = () => {
   //   country: "Singapore",
   //   description: randomtext,
   // };
-  console.log("experiences",experiences);
+  console.log("experiences", experiences);
   return (
-    <Container className={classes.container}>
-      {experiences.map((experience,i) => {
-        return (
-          <div key={i}>
-            <p className={classes.title}>{experience.name}</p>
-            <p>{experience.position}</p>
-            <p>{experience.country}</p>
-            <p>
-              {experience.datestart}-{experience.dateend}
-            </p>
-            <p>{experience.description}</p>
-          </div>
-        );
-      })}
-    </Container>
+    <div>
+      {experiences.length === 0 && <h5>No Data</h5>}
+      {experiences.length !== 0 && (
+        <Container className={classes.container}>
+          {experiences.map((experience, i) => {
+            return (
+              <div key={i}>
+                <p className={classes.title}>{experience.name}</p>
+                <p>{experience.position}</p>
+                <p>{experience.country}</p>
+                <p>
+                  {experience.datestart}-{experience.dateend}
+                </p>
+                <p>{experience.description}</p>
+              </div>
+            );
+          })}
+        </Container>
+      )}
+    </div>
   );
 };
 

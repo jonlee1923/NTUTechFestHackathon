@@ -1,8 +1,13 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import classes from "./Description.module.css";
+
 const Description = (props) => {
   return (
-    <Container>{props.profile && <div>{props.profile.desc}</div>}</Container>
+    <Container className={classes.container}>
+      {props.profile && <p>{props.profile.desc}</p>}
+      {!props.profile && <p>-</p>}
+    </Container>
   );
 };
 

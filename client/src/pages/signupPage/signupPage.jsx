@@ -54,7 +54,7 @@ function Signup() {
         "Content-Type": "application/json",
       };
       const responseData = await sendRequest(
-        "http://localhost:5000/api/company/signup",
+        "http://localhost:5000/api/users/signup",
         "POST",
         body,
         headers

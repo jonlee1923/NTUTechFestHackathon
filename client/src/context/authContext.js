@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userId, setUserId] = useState("");
     const [token, setToken] = useState("");
-
+    
     const [tokenExpirationDate, setTokenExpirationDate] = useState();
 
     //if i manually login then the expiry restarts

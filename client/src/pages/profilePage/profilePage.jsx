@@ -10,13 +10,13 @@ import EditPencil from "../../components/EditPencil/EditPencil";
 import Experience from "../../components/Experience/Experience";
 import Skills from "../../components/Skills/Skills";
 import Interests from "../../components/Interests/Interests";
+import Description from "../../components/Description/Description";
 
 import { AuthContext } from "../../context/authContext";
 import { useHttpClient } from "../../hooks/httpHook";
 
 import classes from "./profilePage.module.css";
 import profilepic from "../../assets/randompic.png";
-
 
 const randomtext =
   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum";
@@ -34,10 +34,11 @@ function Profile() {
   const [user, setUser] = useState(null);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getUser = async () => {
+    console.log(auth.userId);
     const responseData = await sendRequest(
-      `http://localhost:5000/api/users/profilepage/${auth.userId}`,
-      "GET"
+      `http://localhost:5000/api/users/profilepage/${auth.userId}`
     );
     setUser(responseData);
     console.log("user", user);
@@ -45,7 +46,7 @@ function Profile() {
 
   useEffect(() => {
     getUser();
-  }, [auth]);
+  }, []);
 
   return (
     <Container>
@@ -59,7 +60,7 @@ function Profile() {
 
               <Row>
                 <Col>
-                  <UserImage className={classes.userimage} src={profilepic}/>
+                  <UserImage className={classes.userimage} src={profilepic} />
                 </Col>
                 <Col>
                   <PersonalDetails
@@ -70,7 +71,7 @@ function Profile() {
               </Row>
               <Row>
                 <Col>
-                  <p>{profile.description}</p>
+                  <Description profile={user}/>
                 </Col>
               </Row>
             </Card.Body>
@@ -82,7 +83,7 @@ function Profile() {
               Links <EditPencil href="#" />
             </Card.Title>
             <Card.Body>
-              <LinkDetails profile={profile}/>
+              <LinkDetails profile={profile} />
             </Card.Body>
           </Card>
         </Col>
@@ -104,7 +105,7 @@ function Profile() {
               Skills <EditPencil href="#" />
             </Card.Title>
             <Card.Body>
-              <Skills profile={profile}/>
+              <Skills profile={profile} />
             </Card.Body>
           </Card>
         </Col>
@@ -126,7 +127,7 @@ function Profile() {
               Interests <EditPencil href="#" />
             </Card.Title>
             <Card.Body>
-              <Interests profile={profile}/>
+              <Interests profile={profile} />
             </Card.Body>
           </Card>
         </Col>

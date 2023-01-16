@@ -1,8 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Job from "./../renderJob/renderJob";
+import Job from "../renderJob/renderJob.jsx";
 import { useHttpClient } from "../../hooks/httpHook";
-import { Container, Form, Button, Pagination } from "react-bootstrap";
+import { Container, Form, Button, Pagination, Row, Col } from "react-bootstrap";
+
+import { BiSearchAlt2 } from "react-icons/bi";
+import { CiLocationArrow1 } from "react-icons/ci";
+
+
+import classes from "./jobListingsPage.module.css";
 
 export default function JobListings() {
     const { sendRequest } = useHttpClient();
@@ -104,6 +110,7 @@ export default function JobListings() {
         else {
             setRenderJobs(jobListing);
         }
+        setCurrentPage(1);
     }
 
     const handlePage = (page) => {
@@ -111,52 +118,62 @@ export default function JobListings() {
     }
 
     return (
-        <Container >
-           <Form className="d-flex mt-4">
+        <Container>
+           <Form  className={classes.searchbar}>
+            {<BiSearchAlt2 className="me-2" style={{ width:'20px', height:"40px"}}/>}
              <Form.Control
               type="search"
               name="jobsearch"
-              placeholder="e.g. Product Developer"
+              placeholder= "e.g. Product developer"
               className="me-2 w-50"
               aria-label="Search"
               onChange={handleChange}
              />
-            <Form.Select 
-             className="me-2 w-25"
-             aria-label="Select"
-             onChange={handleLocationFilter}>
+             {<CiLocationArrow1 className="me-2" style={{ width:'20px', height:"40px"}}/>}
+             <Form.Select 
+              className="me-2 w-25"
+              aria-label="Select"
+              onChange={handleLocationFilter}>
               <option>Choose location</option>
               {jobListing != '' ? populateSelection() : null}
-            </Form.Select>
-
+             </Form.Select>
              <Button onClick={handleSearch} variant="outline-success">Search</Button>
             </Form>
-            <p className="p-2 mt-3" style={{ fontWeight: 'bold' }}> Job listings found: {renderJobs.length}</p>
-            {renderJobs == '' ? null : renderJobs.slice(indexOfFirstRecord, indexOfLastRecord).map((job) => ( 
-                <Job data={job} />
-            ))}
-            <Pagination 
-             className="mx-5"
-             nPages = { nPages }
-             currentPage = { currentPage }
-             setCurrentPage = { setCurrentPage }>
-                <Pagination.First 
-                 onClick={firstPage}/>
+            <hr/>
+            <Container className={classes.listnum}>
+                <p style={{ fontWeight: 'bold' }}> Job listings found: {renderJobs.length}</p>
+                <p className={classes.listnum2} style={{ fontWeight: 'bold' }}> Displaying {(currentPage-1)*recordsPerPage + renderJobs.slice(indexOfFirstRecord, indexOfLastRecord).length} of {renderJobs.length} results </p>
+            </Container>
+            
+                {renderJobs == '' ? null : renderJobs.slice(indexOfFirstRecord, indexOfLastRecord).map((job) => ( 
+                        <Container className={classes.card}>
+                           <Job data={job} />
+                        </Container>
+                ))}
+            
+            <Container className={classes.pagination}>
+                <Pagination 
+                 nPages = { nPages }
+                 currentPage = { currentPage }
+                 setCurrentPage = { setCurrentPage }>
+                    <Pagination.First 
+                     onClick={firstPage}/>
 
-                <Pagination.Prev 
-                 onClick={prevPage}
-                 href='#'/>
+                    <Pagination.Prev 
+                     onClick={prevPage}
+                     href='#'/>
 
-                {pageNumbers.map((pgNumber) => {
-                    let state = currentPage == pgNumber ? true : false; 
-                    return <Pagination.Item active={state} onClick={() => {handlePage(pgNumber)}} > {pgNumber} </Pagination.Item>
-                })}
+                    {pageNumbers.map((pgNumber) => {
+                        let state = currentPage == pgNumber ? true : false; 
+                        return <Pagination.Item active={state} onClick={() => {handlePage(pgNumber)}} > {pgNumber} </Pagination.Item>
+                    })}
 
-                <Pagination.Next 
-                 onClick={nextPage}/>
-                <Pagination.Last 
-                 onClick={lastPage}/>
-            </Pagination>
+                    <Pagination.Next 
+                    onClick={nextPage}/>
+                    <Pagination.Last 
+                    onClick={lastPage}/>
+                </Pagination>
+            </Container>
         </Container>
             
     );

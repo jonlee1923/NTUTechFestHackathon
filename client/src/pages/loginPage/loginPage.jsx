@@ -51,7 +51,8 @@ function Login() {
         };
 
         const response = await sendRequest(url, method, body, headers);
-        auth.login(response.userId, response.token);
+        // console.log("id", response);
+        auth.login(response._id, response.token);
 
         console.log(response);
       } catch (err) {}

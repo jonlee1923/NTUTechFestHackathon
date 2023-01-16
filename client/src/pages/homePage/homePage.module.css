@@ -27,20 +27,6 @@
     background-color: #41A317;
 }
 
-.reviews{
-    margin:50px;
-    display:flex;
-    justify-content: center;
-}
+.leftarrow{
 
-.reviews p{
-    margin:20px;
-}
-
-.card{
-    width:85%;
-}
-
-.arrows{
-    margin:80px 20px;
 }

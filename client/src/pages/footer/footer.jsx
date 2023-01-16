@@ -1,12 +1,15 @@
 import React from "react";
 import { Container, Card, Row, Col } from "react-bootstrap";
+import brand from "../../assets/TechLink.jpg";
 
 import classes from "./footer.module.css";
 
 const Footer = () => {
   return (
-    <Container >
-    <hr/>
+    <Container>
+      <hr />
+      <img src={brand} alt="brand" className={classes.brand} />
+
       <Container className={classes.footer}>
         <Row>
           <Col>

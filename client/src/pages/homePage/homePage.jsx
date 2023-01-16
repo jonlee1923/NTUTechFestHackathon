@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import classes from "./homePage.module.css";
 import gotjob from "../../assets/gotjob.jpg";
-import profilepic from "../../assets/randompic.png";
 import { AuthContext } from "../../context/authContext";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import { ArrowRight, ArrowLeft } from "react-bootstrap-icons";
-import UserImage from "../../components/UserImage/UserImage";
+import Reviews from "../../components/Reviews/Reviews";
 
 const HomePage = () => {
   const randomtext =
@@ -31,24 +29,7 @@ const HomePage = () => {
           </Button>
         </div>
       </div>
-      <div className={classes.reviews}>
-        <Card className={classes.card}>
-          <Row>
-            <Col xs={1}>
-              <ArrowLeft size={40} className={classes.arrows}/>
-            </Col>
-            <Col xs={3}>
-              <UserImage src={profilepic} />
-            </Col>
-            <Col xs={7}>
-              <p>{randomtext}</p>
-            </Col>
-            <Col xs={1}>
-              <ArrowRight size={40} className={classes.arrows}/>
-            </Col>
-          </Row>
-        </Card>
-      </div>
+      <Reviews/>
     </div>
   );
 };

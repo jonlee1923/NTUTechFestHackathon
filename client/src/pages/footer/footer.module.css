@@ -4,15 +4,17 @@
     margin-top: auto;
     white-space:nowrap;
     overflow:hidden;
+    text-align:center;
 }
 
 .footer{
     padding:20px;
+    padding-top:60px;
     display:flex;
     flex-direction:column;
     justify-content: space-between;
     flex-wrap: wrap;
-    width:200px !important;
+    width:500px !important;
     height:100px;
 }
 
@@ -23,4 +25,12 @@ hr {
     border-top: 1px solid #ccc;
     margin: 1em 0;
     padding: 0;
+}
+
+.brand{
+    height:150px;
+    width:180px;
+    object-fit: cover;
+    border-radius:25%;
+    float:left;
 }

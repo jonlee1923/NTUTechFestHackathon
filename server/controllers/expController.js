@@ -45,7 +45,7 @@ const createExperience = asyncHandler(async (req, res) => {
     }
 });
 
-const udpateExp = asyncHandler(async (req, res) => {
+const updateExp = asyncHandler(async (req, res) => {
     const expId = req.params.expId;
 
     // Check for user email
@@ -74,5 +74,5 @@ const udpateExp = asyncHandler(async (req, res) => {
 module.exports = {
     createExperience,
     getExp,
-    udpateExp,
+    updateExp,
 };

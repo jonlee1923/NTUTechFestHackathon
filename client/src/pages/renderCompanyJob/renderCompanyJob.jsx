@@ -26,7 +26,7 @@ const Job = (props) => {
 
     const handleDelete = async () => 
     {
-        let url = "http://localhost:5000/api/delete/" + _id //companyId;
+        let url = "http://localhost:5000/api/jobs/delete/" + _id //companyId;
         
         // fetch company job listings
         const response = await sendRequest(url, "DELETE");

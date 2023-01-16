@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import classes from "./fullJobInformation.module.css";
 import {FiMapPin} from "react-icons/fi";
+import Modal from "react-bootstrap/Modal";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
+import JobListings from '../jobListingPage/jobListingsPage';
 
 import {useLocation} from 'react-router-dom';
 
@@ -16,8 +19,14 @@ function JobDescription() {
     const location = state.props.data.location
     
 
+    // for modal
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    
     return (
         <div className={classes.fullJobDescription}>
+
           <Card className={classes.card}>
             <Card.Body>
               <div className={classes.jobRoleLoc}> 
@@ -38,15 +47,36 @@ function JobDescription() {
                   <div className={classes.loc}> 
                     <FiMapPin/>  &nbsp; 
                     <Card.Text> {location}</Card.Text> 
-                  </div>
+                  </div> 
                 </div> 
               </div> 
               &nbsp;
               <Card.Title>Job Description</Card.Title>
               <Card.Text>{description}</Card.Text>    
+
+              <div className = {classes.applyButtonContainer}> 
+                <Button className = {classes.visitCompany} onClick={handleShow}>Apply Here</Button> 
+              </div>
             </Card.Body>
-          </Card>             
+          </Card>     
+          
+          <Modal show={show} onHide={handleClose} animation={false}>
+            <Modal.Header closeButton>
+              <Modal.Title>Confirm submission of job application?</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Interested to apply for this job? Click confirm to send in your application!</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={handleClose}>
+                Confirm
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </div>
+
+        
     );
 }
 

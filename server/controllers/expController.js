@@ -3,6 +3,18 @@ const User = require("../models/userModel");
 const Experience = require("../models/experienceModel");
 const mongoose = require("mongoose");
 
+const getExp = asyncHandler(async (req, res) => {
+    const userId = req.params.uid;
+    const experiences = await Experience.find({ creator: userId });
+    console.log("fetching exp");
+    console.log(experiences)
+    res.status(200).json({
+        experiences: experiences.map((experience) =>
+            experience.toObject({ getters: true })
+        ),
+    });
+});
+
 const createExperience = asyncHandler(async (req, res) => {
     const userId = req.params.uid;
     console.log(req.body);
@@ -15,8 +27,9 @@ const createExperience = asyncHandler(async (req, res) => {
         dateend,
         country,
         description,
+        creator: userId,
     });
-    console.log(userId)
+    console.log(userId);
     const user = await User.findOne({ userId });
     try {
         const sess = await mongoose.startSession();
@@ -34,4 +47,5 @@ const createExperience = asyncHandler(async (req, res) => {
 
 module.exports = {
     createExperience,
+    getExp
 };

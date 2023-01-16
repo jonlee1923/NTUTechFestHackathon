@@ -21,7 +21,8 @@ const eduSchema = mongoose.Schema({
     },
     description:{
         type: String
-    }
+    },
+    creator: { type: mongoose.Types.ObjectId, required: true, ref: "User" },
 });
 
 module.exports = mongoose.model("Education", eduSchema);

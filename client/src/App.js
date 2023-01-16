@@ -110,11 +110,17 @@ function App() {
   return (
     <BrowserRouter>
       <AppNavbar />
+      {!logged && <Login/>}
       <Routes>
+      {logged && 
+        <>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route
+        <Route path="/profile" element={<Profile />} />
+        </>}
+        
+        {/* <Route
           path="/profile"
           element={logged ? <Profile /> : <Navigate to="/login" />}
         />
@@ -130,7 +136,7 @@ function App() {
         <Route
           path="/job-listings"
           element={logged  ? <JobListings /> : <Navigate to="/login" />}
-        />
+        /> */}
       </Routes>
       <Footer />
     </BrowserRouter>

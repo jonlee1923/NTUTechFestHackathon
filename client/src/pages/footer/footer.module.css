@@ -15,7 +15,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   width: 500px !important;
-  height: 100px;
+  height: 170px;
 }
 
 hr {
@@ -35,10 +35,6 @@ hr {
   float: left;
 }
 
-/* .footercontainer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  height:5%;
-} */
+.footerdiv{
+  background-color:#FBFBFB;
+}

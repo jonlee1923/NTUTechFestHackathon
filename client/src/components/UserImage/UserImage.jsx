@@ -11,6 +11,13 @@ const UserImage = (props) => {
           className={`${props.className} ${classes.profilepic}`}
         />
       )}
+      {props.src && (
+        <img
+          alt="user"
+          src={props.src}
+          className={`${props.className} ${classes.profilepic}`}
+        />
+      )}
     </div>
   );
 };

@@ -1,12 +1,16 @@
 .reviews{
     margin:50px;
-
+    padding:20px;
 }
 
 .reviews p{
-    margin:20px 10px;
+    /* margin:20px 10px; */
 }
 
+.description{
+    margin-top:60px;
+    padding:20px;
+}
 .reviewcard{
     /* height:0px; */
     height:0px;
@@ -28,8 +32,14 @@
 
 .arrows{
     margin:80px 20px;
+    margin-top:120px;
 }
 
 .userimage{
     margin-left:20px;
+}
+
+
+.company{
+    margin-left:70px;
 }

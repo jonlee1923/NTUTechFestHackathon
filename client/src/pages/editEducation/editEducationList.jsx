@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Container, Card, Row, Col } from "react-bootstrap";
+import EditPencil from "../../components/EditPencil/EditPencil";
 
 import { useHttpClient } from "../../hooks/httpHook";
 import { AuthContext } from "../../context/authContext";
@@ -26,13 +27,15 @@ const EditEducationList = () => {
     }, []);
   
     return (
-      <div>
+      <Container>
+        <h4 className={classes.title}>Education List</h4>
         {educations.length === 0 && <h5>No Data</h5>}
         {educations.length !== 0 && (
           <Container className={classes.container}>
             {educations.map((education, i) => {
               return (
-                <div key={i}>
+                <Card key={i} className={classes.card}>
+                <EditPencil className={classes.editbtn} href={`/editedu/${education.id}`}/>
                   <p className={classes.title}>{education.name}</p>
                   <p>{education.course}</p>
                   <p>
@@ -42,12 +45,12 @@ const EditEducationList = () => {
                     Grade: {education.grade}/{education.maxgrade}
                   </p>
                   <hr/>
-                </div>
+                </Card>
               );
             })}
           </Container>
         )}
-      </div>
+      </Container>
     );
   };
 

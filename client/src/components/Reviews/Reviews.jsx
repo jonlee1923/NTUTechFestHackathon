@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import classes from "./Reviews.module.css";
 import UserImage from "../../components/UserImage/UserImage";
-import profilepic from "../../assets/randompic.png";
-import profilepic2 from "../../assets/Profilepic.jpg";
-import profilepic3 from "../../assets/TechLink.jpg";
+import profilepic1 from "../../assets/profilepic1.png";
+import profilepic2 from "../../assets/profilepic2.jpg";
+import profilepic3 from "../../assets/profilepic3.png";
 
 import { ArrowRight, ArrowLeft } from "react-bootstrap-icons";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
@@ -14,23 +14,35 @@ const Reviews = () => {
 
   const reviewList = [
     {
-      src: profilepic,
-      description: randomtext,
+      name: "Jacob Bucker",
+      position: "Software Engineer",
+      company: "Facebook",
+      src: profilepic1,
+      description:
+        "Works like a charm. I love the ease of the app and would highly recommend anyone looking for a career change into the tech industry to use it. This is the perfect opportunity for you to express what you are capable of.",
     },
     {
+      name: "Alex James",
+      position: "Data Analyst",
+      company: "Amazon",
       src: profilepic2,
-      description: randomtext,
+      description:
+        "I didn't even know where to start as far as job hunting or how to connect with companies. TechLink has really helped made this part so easy! Thank you!",
     },
     {
+      name: "Kobe Curry",
+      position: "Cybersecurity Engineer ",
+      company: "Netflix",
       src: profilepic3,
-      description: randomtext,
+      description:
+        "At first, I wasn't sure whether I was good enough for these tech roles due to me being part of the older generation. However, after a few days of applying for jobs on TechLink, I was quite startled by the amount of interviews I was asked to. Thank you for the wonderful opportunity TechLink!",
     },
   ];
 
   const [activeReview, setActiveReview] = useState(0);
 
   return (
-    <div className={classes.reviews}>
+    <Container className={classes.reviews}>
       {reviewList.map((review, i) => {
         return (
           <Card
@@ -52,10 +64,12 @@ const Reviews = () => {
                 />
               </Col>
               <Col xs={3}>
-                {/* <UserImage src={review.src} className={classes.userimage} /> */}
+                <UserImage src={review.src} className={classes.userimage} />
               </Col>
               <Col xs={7}>
-                <p>{review.description}</p>
+                <Card className={classes.description}>
+                  <p >{review.description}</p>
+                </Card>
               </Col>
               <Col xs={1}>
                 <ArrowRight
@@ -69,10 +83,28 @@ const Reviews = () => {
                 />
               </Col>
             </Row>
+            <Row className={classes.details}>
+              <Col xs={1} />
+              <Col className={classes.detail}>
+                <p>
+                  <strong>
+                    {review.name}, {review.position}
+                  </strong>
+                </p>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={1} />
+              <Col className={classes.company}>
+                <p>
+                  <strong>{review.company}</strong>
+                </p>
+              </Col>
+            </Row>
           </Card>
         );
       })}
-    </div>
+    </Container>
   );
 };
 

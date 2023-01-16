@@ -1,5 +1,7 @@
+const cors =require("cors");
 const path = require("path");
 const express = require("express");
+const bodyParser = require('body-parser');
 const colors = require("colors");
 const dotenv = require("dotenv").config();
 const { errorHandler } = require("./middleware/errorMiddleware");
@@ -11,9 +13,10 @@ connectDB();
 const app = express();
 
 app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-
+// app.use(cors());
 app.use('/uploads/images', express.static(path.join('uploads', 'images')));
 
 

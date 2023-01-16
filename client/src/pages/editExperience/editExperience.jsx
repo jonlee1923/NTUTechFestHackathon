@@ -1,16 +1,15 @@
 import { useState, useContext } from "react";
 import { useHttpClient } from "../../hooks/httpHook";
 import { Container, Form, Button } from "react-bootstrap";
-import classes from "./editEducation.module.css";
+import classes from "./editExperience.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 
-const EditEducation = () => {
-  const [course, setCourse] = useState("");
+const EditExperience = () => {
+  const [position, setPosition] = useState("");
   const [name, setName] = useState("");
   const [datestart, setDateStart] = useState("");
   const [dateend, setDateEnd] = useState("");
-  const [grade, setGrade] = useState("");
-  const [maxgrade, setMaxGrade] = useState("");
+  const [country, setCountry] = useState("");
   const [description, setDescription] = useState("");
 
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -21,16 +20,15 @@ const EditEducation = () => {
     event.preventDefault();
 
     const formData = new FormData();
-    formData.append("course", course);
+    formData.append("position", position);
     formData.append("name", name);
     formData.append("datestart", datestart);
     formData.append("dateend", dateend);
-    formData.append("grade", grade);
-    formData.append("maxgrade", maxgrade);
+    formData.append("country", country);
     formData.append("description", description);
-    console.log(name, course, grade, maxgrade, description);
+    console.log(name, description, eid);
     const responseData = await sendRequest(
-      `http://localhost:5000/api/education/updateEducation/${eid}`,
+      `http://localhost:5000/api/experience/updateExp/${eid}`,
       "PATCH",
       formData,
     );
@@ -39,8 +37,8 @@ const EditEducation = () => {
     else console.log("fail");
   };
 
-  const courseChange = (event) => {
-    setCourse(event.target.value);
+  const positionChange = (event) => {
+    setPosition(event.target.value);
   };
   const nameChange = (event) => {
     setName(event.target.value);
@@ -51,11 +49,8 @@ const EditEducation = () => {
   const dateEndChange = (event) => {
     setDateEnd(event.target.value);
   };
-  const gradeChange = (event) => {
-    setGrade(event.target.value);
-  };
-  const maxGradeChange = (event) => {
-    setMaxGrade(event.target.value);
+  const countryChange = (event) => {
+    setCountry(event.target.value);
   };
   const descriptionChange = (event) => {
     setDescription(event.target.value);
@@ -63,7 +58,7 @@ const EditEducation = () => {
 
   return (
     <Container className={classes.container}>
-      <h4 className={classes.title}>Edit Educations</h4>
+    <h4 className={classes.title}>Edit Experiences</h4>
       <form onSubmit={submit}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Name</Form.Label>
@@ -76,12 +71,12 @@ const EditEducation = () => {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-          <Form.Label>Course</Form.Label>
+          <Form.Label>Position</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter Course"
+            placeholder="Enter Position"
             className={classes.input}
-            onChange={courseChange}
+            onChange={positionChange}
           />
         </Form.Group>
 
@@ -106,22 +101,12 @@ const EditEducation = () => {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
-          <Form.Label>Grade</Form.Label>
+          <Form.Label>Country</Form.Label>
           <Form.Control
-            type="number"
-            placeholder="Enter Grade"
+            type="text"
+            placeholder="Enter Country"
             className={classes.input}
-            onChange={gradeChange}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput6">
-          <Form.Label>Max Grade</Form.Label>
-          <Form.Control
-            type="number"
-            placeholder="Enter Max Grade"
-            className={classes.input}
-            onChange={maxGradeChange}
+            onChange={countryChange}
           />
         </Form.Group>
 
@@ -144,4 +129,4 @@ const EditEducation = () => {
   );
 };
 
-export default EditEducation;
+export default EditExperience;

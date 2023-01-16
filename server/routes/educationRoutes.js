@@ -9,6 +9,6 @@ const {
 
 router.get("/:uid", getEducation);
 router.post("/createEducation/:uid", createEducation);
-router.patch("/udpateEducation/:eduId", updateEducation);
+router.patch("/updateEducation/:eid", updateEducation); 
 
 module.exports = router;

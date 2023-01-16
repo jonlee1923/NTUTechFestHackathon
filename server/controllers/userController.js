@@ -81,7 +81,6 @@ const updateOne = asyncHandler(async (req, res) => {
   // Check for user email
   const user = await User.findOne({ userId });
   const { name, age, desc } = req.body;
-
   if (name) user.name = name;
   if (age) user.age = age;
   if (desc) user.desc = desc;

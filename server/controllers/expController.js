@@ -52,7 +52,7 @@ const updateExp = asyncHandler(async (req, res) => {
     const exp = await Experience.findOne({ expId });
     const { name, position, datestart, dateend, country, description } =
         req.body;
-
+    console.log(req.body);
     exp.name = name;
     exp.position = position;
     exp.datestart = datestart;

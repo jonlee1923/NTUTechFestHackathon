@@ -10,7 +10,7 @@ const EditPencil = (props) => {
     <span>
     <a href={props.href}>
       <span>
-        <PencilFill className={classes.editbtn} />
+        <PencilFill className={`${classes.editbtn}`} />
       </span>
     </a>
   </span>

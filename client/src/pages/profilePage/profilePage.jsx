@@ -16,7 +16,6 @@ import { AuthContext } from "../../context/authContext";
 import { useHttpClient } from "../../hooks/httpHook";
 
 import classes from "./profilePage.module.css";
-import profilepic from "../../assets/randompic.png";
 
 const randomtext =
   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum";
@@ -93,7 +92,7 @@ function Profile() {
           <Card className={classes.card}>
             <Card.Body>
               <Card.Title>
-                Education <EditPencil href="#" />
+                Education <EditPencil href="/editedulist" />
               </Card.Title>
               <Education />
             </Card.Body>
@@ -115,13 +114,13 @@ function Profile() {
           <Card className={classes.card}>
             <Card.Body>
               <Card.Title>
-                Experience <EditPencil href="#" />
+                Experience <EditPencil href="/editexplist" />
               </Card.Title>
               <Experience />
             </Card.Body>
           </Card>
         </Col>
-        <Col>
+        {/* <Col>
           <Card className={classes.sidecard} xs={4}>
             <Card.Title>
               Interests <EditPencil href="#" />
@@ -130,7 +129,7 @@ function Profile() {
               <Interests profile={profile} />
             </Card.Body>
           </Card>
-        </Col>
+        </Col> */}
       </Row>
     </Container>
   );

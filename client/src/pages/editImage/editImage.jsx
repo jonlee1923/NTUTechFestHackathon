@@ -49,6 +49,7 @@ export default function Image() {
 
   return (
     <Container className={classes.container}>
+      <h4 className={classes.title}>Edit Personal Details</h4>
       <form onSubmit={submit}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Name</Form.Label>

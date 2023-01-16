@@ -14,12 +14,10 @@ const Experience = () => {
   const { userId } = useContext(AuthContext);
   useEffect(() => {
     const fetchExperience = async () => {
-      console.log(userId);
       let url = `http://localhost:5000/api/experience/getExp/${userId}`;
       const response = await sendRequest(url);
       console.log(response);
       setExperiences(response.experiences);
-      console.log("experiences", experiences);
     };
     fetchExperience();
   }, []);

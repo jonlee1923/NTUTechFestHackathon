@@ -9,6 +9,6 @@ const {
 } = require("../controllers/expController");
 router.get("/getExp/:uid", getExp);
 router.post("/createExp/:uid", createExperience);
-router.patch("/udpateExp/expId", updateExp);
+router.patch("/updateExp/:expId", updateExp);
 
 module.exports = router;

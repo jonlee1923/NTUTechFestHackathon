@@ -89,6 +89,10 @@ import EditImage from "./pages/editImage/editImage";
 import JobDescription from "./pages/fullJobInformation/fullJobInformation";
 import JobListings from "./pages/jobListingPage/jobListingsPage";
 import Signup from "./pages/signupPage/signupPage";
+import CreateJobListings from "./pages/createJobListingPage/createJobListingPage";
+import CompanyProfile from "./pages/companyPage/companyPage";
+import CompanyJobListings from "./pages/companyJobListingPage/companyJobListingPage";
+
 
 import { AuthContext } from "./context/authContext";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
@@ -107,17 +111,20 @@ function App() {
     }
   }, [isLoggedIn]);
 
-  return (
+return (
     <BrowserRouter>
       <AppNavbar />
-      {!logged && <Login/>}
+      {logged && <Login/>}
       <Routes>
-      {logged && 
+      {!logged && 
         <>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/createJobListings" element={<CreateJobListings />} />
+        <Route path="/companyListings" element={<CompanyJobListings />} />
+        <Route path="/companyProfilePage" element={<CompanyProfile />} />
         </>}
         
         {/* <Route

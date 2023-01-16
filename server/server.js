@@ -12,6 +12,11 @@ const app = express();
 
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
+
+
+app.use('/uploads/images', express.static(path.join('uploads', 'images')));
+
+
 app.use((req, res, next) => {
     //Controls which domains have access, * means any domain
     res.setHeader("Access-Control-Allow-Origin", "*");

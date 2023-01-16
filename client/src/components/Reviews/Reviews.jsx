@@ -52,7 +52,7 @@ const Reviews = () => {
                 />
               </Col>
               <Col xs={3}>
-                <UserImage src={review.src} className={classes.userimage} />
+                {/* <UserImage src={review.src} className={classes.userimage} /> */}
               </Col>
               <Col xs={7}>
                 <p>{review.description}</p>

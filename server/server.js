@@ -29,7 +29,8 @@ app.use((req, res, next) => {
 
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/jobs", require("./routes/jobRoutes"));
-
+app.use("/api/education", require("./routes/educationRoutes"));
+app.use("/api/experience", require("./routes/expRoutes"));
 
 app.use(errorHandler);
 

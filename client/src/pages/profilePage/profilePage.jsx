@@ -35,9 +35,9 @@ function Profile() {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const getUser = async () => {
+    console.log(auth.userId)
     const responseData = await sendRequest(
-      `http://localhost:5000/api/users/profilepage/${auth.userId}`,
-      "GET"
+      `http://localhost:5000/api/users/profilepage/${auth.userId}`
     );
     setUser(responseData);
     console.log("user", user);
@@ -70,7 +70,7 @@ function Profile() {
               </Row>
               <Row>
                 <Col>
-                  <p>{profile.description}</p>
+                  <p>{user.desc}</p>
                 </Col>
               </Row>
             </Card.Body>

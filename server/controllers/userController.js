@@ -2,6 +2,12 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+const Education  = require("../models/educationModel");
+const mongoose = require("mongoose");
+
+// const {
+//     default: Education,
+// } = require("../../client/src/components/Education/Education");
 
 // @desc    Register new user
 // @route   POST /api/users
@@ -77,7 +83,7 @@ const updateOne = asyncHandler(async (req, res) => {
 
     user.dp = req.file.path;
     user.age = age;
-    user.desc = desc
+    user.desc = desc;
 
     try {
         await user.save();
@@ -88,6 +94,46 @@ const updateOne = asyncHandler(async (req, res) => {
         );
     }
 });
+
+// const getEducation = asyncHandler(async (req, res) => {
+//     const userId = req.params.uid;
+//     const user = await User.findOne({ userId });
+//     res.status(200).json(user.education);
+// });
+
+// const createEducation = asyncHandler(async (req, res) => {
+//     const userId = req.params.uid;
+//     console.log(req.body)
+//     const { name, course, dateStart, dateEnd, grade, maxGrade, description } =
+//         req.body;
+//     createdEdu = new Education({
+//         name,
+//         course,
+//         dateStart,
+//         dateEnd,
+//         grade,
+//         maxGrade,
+//         description,
+//     });
+//     const user = await User.findOne({ userId });
+//     try {
+ 
+//         const sess = await mongoose.startSession();
+//         sess.startTransaction();
+//         await createdEdu.save({ session: sess });
+//         user.education.push(createdEdu);
+//         await user.save({ session: sess });
+//         await sess.commitTransaction();
+
+
+//     } catch (err) {
+//         res.status(500);
+//         console.log(err);
+//         throw new Error(
+//             err.message 
+//         );
+//     }
+// });
 
 // @desc    Get user data
 // @route   GET /api/users/me
@@ -110,4 +156,6 @@ module.exports = {
     loginUser,
     getMe,
     updateOne,
+    // createEducation,
+    // getEducation
 };

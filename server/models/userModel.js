@@ -24,15 +24,17 @@ const userSchema = mongoose.Schema(
         github: {
             type: String,
         },
-        gpa: {
+        portfolio: {
             type: String,
         },
+
         dp: {
             type: String,
         },
-        course: {
-            type: String,
-        },
+        
+        education: [{ type: mongoose.Types.ObjectId, required: true, ref: "Education" }],
+        experience: [{ type: mongoose.Types.ObjectId, required: true, ref: "Experience" }],
+
     },
     {
         timestamps: true,

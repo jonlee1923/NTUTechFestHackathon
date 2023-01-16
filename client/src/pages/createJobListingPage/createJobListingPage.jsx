@@ -6,9 +6,14 @@ import { useNavigate } from "react-router-dom";
 import {useLocation} from 'react-router-dom';
 import { useEffect } from "react";
 
+import { useHttpClient } from "../../hooks/httpHook";
+
 // company name, job title, job desc, salary(?), location
 
 export default function CreateJobListings() {
+
+    const { sendRequest } = useHttpClient();
+
     let navigate = useNavigate(); 
     const {state} = useLocation();
 
@@ -19,11 +24,13 @@ export default function CreateJobListings() {
     const [showFailure, setShowFailure] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
     const [goBack, setGoBack] = useState(false);
+    const [companyId, setCompanyId] = useState(null);
 
     useEffect(() => {
-        if (state.companyName != null) {
+        if (state.companyName != null) 
             setCompanyName(state.companyName);
-        }
+        if (state.companyId != null)
+            setCompanyId(state.companyId);
     }, []);
 
     const handleCompanyName = (e) => {
@@ -46,19 +53,30 @@ export default function CreateJobListings() {
         setJobDesc(e.target.value);
     }
 
-    
-    const submitForm = () => {
+    const submitForm = async () => {
         if (companyName && jobPos && location && jobDesc) {
-            console.log(companyName, jobPos, location, jobDesc);
+            // console.log(companyName, jobPos, location, jobDesc);
+            // companyName, offeredRole, location, jobDesc
+            let url = "http://localhost:5000/api/jobs/" + companyId;
+
+            let method = "POST";
+            let body = JSON.stringify({
+                companyName: companyName,
+                offeredRole: jobPos,
+                location: location,
+                jobDesc: jobDesc,
+            });
+            let headers = {
+                "Content-Type": "application/json",
+            };
+            // temp bypass without await, not too sure why it's not replying with a resp
+            sendRequest(url, method, body, headers);
             setShowSuccess(true);
         }
         else {
             setShowFailure(true);
         }
-        
     }
-
-
     
     if (showSuccess) {
         return(
@@ -72,7 +90,7 @@ export default function CreateJobListings() {
     }
 
     if (goBack) {
-        navigate('/jobListings');
+        navigate('/companyProfilePage');
     }
 
     return (

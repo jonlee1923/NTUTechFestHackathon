@@ -1,5 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Job = require("../models/jobModel");
+const Company = require("../models/companyModel");
+const mongoose = require("mongoose");
 
 // @desc    Get jobs data
 // @route   GET /api/jobs
@@ -88,11 +90,49 @@ const applyJob = asyncHandler(async (req, res) => {
     }
 });
 
+const deleteJob = asyncHandler(async (req, res) => {
+    const jobId = req.params.jobId;
+
+    let job;
+    try {
+        job = await Job.findById(jobId)
+    } catch (err) {
+        const error = new HttpError(
+            "Something went wrong, could not delete place.",
+            500
+        );
+        return next(error);
+    }
+
+    if (!place) {
+        const error = new HttpError(
+            "Could not find a place  for that id.",
+            404
+        );
+        return next(error);
+    }
+
+    try {
+        const sess = await new mongoose.startSession();
+        sess.startTransaction();
+        await job.remove({ session: sess });
+        sess.commitTransaction();
+    } catch (err) {
+        const error = new HttpError(
+            "Something went wrong, could not delete place.",
+            500
+        );
+        return next(error);
+    }
+
+    res.status(200).json({ message: "Deleted place." });
+});
 
 module.exports = {
     getJob,
     getJobs,
     createJob,
     applyJob,
-    getCompanyJobs
+    getCompanyJobs,
+    deleteJob,
 };

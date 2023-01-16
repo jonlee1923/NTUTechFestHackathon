@@ -7,6 +7,10 @@ import PersonalDetails from "../../components/PersonalDetails/PersonalDetails";
 import Education from "../../components/Education/Education";
 import LinkDetails from "../../components/LinkDetails/LinkDetails";
 import EditPencil from "../../components/EditPencil/EditPencil";
+import Experience from "../../components/Experience/Experience";
+import Skills from "../../components/Skills/Skills";
+import Interests from "../../components/Interests/Interests";
+
 import { AuthContext } from "../../context/authContext";
 import { useHttpClient } from "../../hooks/httpHook";
 
@@ -73,7 +77,7 @@ function Profile() {
           </Card>
         </Col>
         <Col>
-          <Card className={classes.sidecard}>
+          <Card className={classes.sidecard} xs={4}>
             <Card.Title>
               Links <EditPencil href="#" />
             </Card.Title>
@@ -91,6 +95,38 @@ function Profile() {
                 Education <EditPencil href="#" />
               </Card.Title>
               <Education />
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col>
+          <Card className={classes.sidecard} xs={4}>
+            <Card.Title>
+              Skills <EditPencil href="#" />
+            </Card.Title>
+            <Card.Body>
+              <Skills profile={profile}/>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={8}>
+          <Card className={classes.card}>
+            <Card.Body>
+              <Card.Title>
+                Experience <EditPencil href="#" />
+              </Card.Title>
+              <Experience />
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col>
+          <Card className={classes.sidecard} xs={4}>
+            <Card.Title>
+              Interests <EditPencil href="#" />
+            </Card.Title>
+            <Card.Body>
+              <Interests profile={profile}/>
             </Card.Body>
           </Card>
         </Col>

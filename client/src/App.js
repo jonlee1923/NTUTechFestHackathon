@@ -86,64 +86,55 @@ import Profile from "./pages/profilePage/profilePage";
 import AppNavbar from "./pages/navbar/navbar";
 import Footer from "./pages/footer/footer";
 import EditImage from "./pages/editImage/editImage";
-import CreateEditEdu from "./pages/loginPage/CreateEditEdu";
+import JobDescription from "./pages/fullJobInformation/fullJobInformation";
+import JobListings from "./pages/jobListingPage/jobListingsPage";
+import Signup from "./pages/signupPage/signupPage";
+
 import { AuthContext } from "./context/authContext";
-import { useAuth } from "./hooks/authHook";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import CreateEditExp from "./pages/loginPage/CreateEditExp";
 
 function App() {
-    const { token, userId, isLoggedIn } = useContext(AuthContext);
-    const [logged, setLogged] = useState(false);
-    console.log("app.js", token, userId, isLoggedIn);
+  const { token, userId, isLoggedIn } = useContext(AuthContext);
+  const [logged, setLogged] = useState(false);
+  console.log("app.js", token, userId, isLoggedIn);
 
-    useEffect(() => {
-        if (token) {
-            setLogged(true);
-        } else {
-            setLogged(false);
-        }
-    }, [token, userId]);
+  useEffect(() => {
+    if (isLoggedIn) {
+      setLogged(true);
+    } else {
+      setLogged(false);
+    }
+  }, [isLoggedIn]);
 
-    return (
-        <>
-            <AppNavbar />
-            <BrowserRouter>
-                {!logged ? (
-                    <Login />
-                ) : (
-                    <Routes>
-                        <Route
-                            path="/createExperience"
-                            element={<CreateEditExp />}
-                        />
+  return (
+    <BrowserRouter>
+      <AppNavbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/profile"
+          element={logged ? <Profile /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/editimage"
+          element={logged ? <EditImage /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/fullJobDescription"
+          element={logged ? <JobDescription /> : <Navigate to="/login" />}
+        />
 
-                        <Route
-                            path="/createEducation"
-                            element={<CreateEditEdu />}
-                        />
-                        <Route path="/" element={<Home />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route
-                            path="/profile"
-                            element={
-                                isLoggedIn ? <Profile /> : <Navigate to="/" />
-                            }
-                        />
-                        <Route
-                            path="/editimage"
-                            element={
-                                isLoggedIn ? <EditImage /> : <Navigate to="/" />
-                            }
-                        />
-                        <Route path="/profile" element={<Profile />} />
-                        <Route path="/editimage" element={<EditImage />} />
-                    </Routes>
-                )}
-            </BrowserRouter>
-            <Footer />
-        </>
-    );
+        <Route
+          path="/job-listings"
+          element={logged  ? <JobListings /> : <Navigate to="/login" />}
+        />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+  );
 }
 
 export default App;

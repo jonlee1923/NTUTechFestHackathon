@@ -25,6 +25,7 @@ const Education = () => {
     <Container className={classes.container}>
       <p className={classes.title}>{education.name}</p>
       <p>{education.course}</p>
+      <p>{education.datestart}-{education.dateend}</p>
       <p>
         Grade: {education.grade}/{education.maxgrade}
       </p>

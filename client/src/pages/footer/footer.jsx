@@ -6,10 +6,9 @@ import classes from "./footer.module.css";
 
 const Footer = () => {
   return (
-    <Container>
+    <Container className= {classes.footercontainer}>
       <hr />
       <img src={brand} alt="brand" className={classes.brand} />
-
       <Container className={classes.footer}>
         <Row>
           <Col>

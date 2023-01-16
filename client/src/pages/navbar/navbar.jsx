@@ -15,7 +15,6 @@ import { AuthContext } from "../../context/authContext";
 
 function AppNavbar() {
   const auth = useContext(AuthContext);
-  console.log(auth.isLoggedIn);
   return (
     <Navbar bg="light" expand="lg" className={classes.navbar}>
       <Container>
@@ -27,19 +26,8 @@ function AppNavbar() {
           <Nav className="me-auto">
             <Nav.Link href="/job-listings">Job-Listing</Nav.Link>
             <Nav.Link href="#link">Career Options</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
           </Nav>
-          <Form className="d-flex">
+          {/* <Form className="d-flex">
             <Form.Control
               type="search"
               placeholder="Search"
@@ -47,11 +35,18 @@ function AppNavbar() {
               aria-label="Search"
             />
             <Button variant="outline-success">Search</Button>
-          </Form>
+          </Form> */}
           {auth.isLoggedIn && (
-            <Nav.Link className="ms-auto" href="/profile">
-              <Person size={40} className={classes.profile} />
-            </Nav.Link>
+            <NavDropdown className="ms-auto" title={<Person size={50} className={classes.profile}/> } id="basic-nav-dropdown">
+            <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item onClick={()=>{
+                auth.logout();
+              }}>
+                Logout
+              </NavDropdown.Item>
+            </NavDropdown>
+
           )}
           {!auth.isLoggedIn && (
             <div className={classes.loginbtn}>

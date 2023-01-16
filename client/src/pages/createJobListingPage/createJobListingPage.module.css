@@ -1,0 +1,46 @@
+.formContainer{
+    display:flex;
+    justify-content: center;
+}
+
+.formGroup{
+    width:75%;
+}
+
+.title{
+    margin-top: 20px;
+    margin-left: 150px;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.controlForm1{
+    width: 50%;
+    margin-left: 20px;
+}
+
+.controlForm2{
+    width: 50%;
+    margin-left: 50px;
+}
+
+.controlForm3{
+    width: 50%;
+    margin-left: 74px;
+}
+
+.textareaForm{
+    width: 75%;
+    margin-left: 25px;
+}
+
+.submitBtn{
+    margin-top: 20px;
+    display:flex;
+    justify-content: center;
+}
+.alertBox{
+    margin-top: 20px;
+    width: 75%;
+    margin-left:150px;
+}

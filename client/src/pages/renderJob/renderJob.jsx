@@ -27,13 +27,13 @@ const Job = (props) => {
             // console.log(props);
             navigate("/fullJobDescription", {state:{props}})
         }}>
-        <Card.Body>
-        <Card.Title> {<FaBuilding className="mb-1" style={{height:'16px'}}/>} {companyName} </Card.Title>
-        <hr/>
-        <Card.Subtitle className="mb-2"> {<GrUserWorker className="mb-1" style={{height:'16px'}}/>} {offeredRole}</Card.Subtitle>
-        <Card.Subtitle  className="mb-2">{<AiFillStar className="mb-1" style={{height:'16px'}}/>} {starRating} </Card.Subtitle>
-        <Card.Subtitle> {<MdLocationPin className="mb-1" style={{height:'16px'}}/>} {location} </Card.Subtitle>
-        </Card.Body>
+         <Card.Body>
+          <Card.Title> {<FaBuilding className="mb-1" style={{height:'16px'}}/>} {companyName} </Card.Title>
+           <hr/>
+           <Card.Subtitle className="mb-2"> {<GrUserWorker className="mb-1" style={{height:'16px'}}/>} {offeredRole}</Card.Subtitle>
+           <Card.Subtitle  className="mb-2">{<AiFillStar className="mb-1" style={{height:'16px'}}/>} {starRating} </Card.Subtitle>
+           <Card.Subtitle> {<MdLocationPin className="mb-1" style={{height:'16px'}}/>} {location} </Card.Subtitle>
+         </Card.Body>
         </Card>
     );
 }

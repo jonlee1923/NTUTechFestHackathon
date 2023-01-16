@@ -19,6 +19,6 @@ def predict_route():
     input_data = request.get_json()['input']
     prediction = predict(input_data)
     print(prediction)
-    return jsonify({'prediction': prediction})
+    return jsonify({'prediction': prediction[0]})
 if __name__ == '__main__':
-     app.run()
+     app.run(port=8000)

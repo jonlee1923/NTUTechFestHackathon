@@ -118,6 +118,23 @@ const updateGithub = asyncHandler(async (req, res) => {
     }
 });
 
+const updatePortfolio = asyncHandler(async (req, res) => {
+  const userId = req.params.uid;
+
+  // Check for user email
+  const user = await User.findOne({ userId });
+  const { portfolio } = req.body;
+  user.portfolio = portfolio;
+
+  try {
+      await user.save();
+      res.send(JSON.stringify("success"));
+  } catch (err) {
+      res.status(500);
+      throw new Error(err.message);
+  }
+});
+
 // @desc    Get user data
 // @route   GET /api/users/me
 // @access  Private
@@ -153,4 +170,5 @@ module.exports = {
     updateOne,
     updateGithub,
     updateSkills,
+    updatePortfolio
 };

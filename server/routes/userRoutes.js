@@ -7,7 +7,8 @@ const {
     updateOne,
     getMe,
     updateGithub,
-    updateSkills
+    updateSkills,
+    updatePortfolio
 } = require("../controllers/userController");
 
 router.post("/signup", registerUser);
@@ -25,5 +26,7 @@ router.patch(
 router.patch("/updateSkills/:uid", updateSkills)
 
 router.post("updateGithub/:uid", updateGithub);
+
+router.patch("updatePortfolio/:uid", updatePortfolio);
 
 module.exports = router;

@@ -52,6 +52,7 @@ const Education = (props) => {
                 <p>
                   Grade: {education.grade}/{education.maxgrade}
                 </p>
+                <p>{education.description}</p>
                 <hr/>
               </div>
             );

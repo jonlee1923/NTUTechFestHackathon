@@ -2,6 +2,12 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+const Education  = require("../models/educationModel");
+const mongoose = require("mongoose");
+
+// const {
+//     default: Education,
+// } = require("../../client/src/components/Education/Education");
 
 // @desc    Register new user
 // @route   POST /api/users
@@ -77,7 +83,7 @@ const updateOne = asyncHandler(async (req, res) => {
 
     user.dp = req.file.path;
     user.age = age;
-    user.desc = desc
+    user.desc = desc;
 
     try {
         await user.save();
@@ -110,4 +116,6 @@ module.exports = {
     loginUser,
     getMe,
     updateOne,
+    // createEducation,
+    // getEducation
 };

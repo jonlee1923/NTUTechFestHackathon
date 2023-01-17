@@ -6,6 +6,7 @@ const {
     loginUser,
     updateOne,
     getMe,
+
 } = require("../controllers/userController");
 
 router.post("/signup", registerUser);
@@ -13,6 +14,7 @@ router.post("/signup", registerUser);
 router.post("/login", loginUser);
 
 router.get("/profilepage/:uid",getMe);
+
 
 router.patch(
     "/updateOne/:uid",

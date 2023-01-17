@@ -15,7 +15,6 @@ import { AuthContext } from "../../context/authContext";
 
 function AppNavbar() {
   const auth = useContext(AuthContext);
-  console.log(auth.isLoggedIn);
   return (
     <Navbar bg="light" expand="lg" className={classes.navbar}>
       <Container>

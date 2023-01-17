@@ -15,11 +15,15 @@ export default function CompanyProfile() {
 
     let navigate = useNavigate(); 
     const companyName = "DSO National Laboratories";
-
+    const companyId = "63c57da4d6504a2a89afea4d"
     const makeJobListing = () => { 
-        navigate("/createJobListings", {state:{companyName}});
+        navigate("/createJobListings", {state:{companyName, companyId}});
     }
-    
+ 
+    const viewJobPostings = () => { 
+        navigate("/companyListings", {state:{companyName, companyId}});
+    }
+
     return (
         <Container className={classes.container}>
             <Card className={classes.card}>
@@ -44,7 +48,7 @@ export default function CompanyProfile() {
           </Card>
           
           <div className={classes.buttonContainer}>
-            <Button className={classes.button} > View job listings </Button>
+            <Button className={classes.button} onClick={viewJobPostings}> View job listings </Button>
             &nbsp;   
             <Button className={classes.button} onClick={makeJobListing}> Make job listing </Button>
           </div>

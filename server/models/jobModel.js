@@ -19,6 +19,8 @@ const jobSchema = mongoose.Schema({
     url: {
         type: String,
     },
+    applicants: [{ type: mongoose.Types.ObjectId, required: true, ref: "User" }],
+    creator: { type: mongoose.Types.ObjectId, required: true, ref: "Company" },
 });
 
 module.exports = mongoose.model("Job", jobSchema);

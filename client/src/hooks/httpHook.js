@@ -18,8 +18,7 @@ export const useHttpClient = () => {
                 });
 
                 const responseData = await response.json();
-
-
+                
                 if (!response.ok) {
                     //response.ok is true if 2-300 status code and will not go inside this block
 

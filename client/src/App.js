@@ -39,7 +39,7 @@ function App() {
     }
   }, [isLoggedIn]);
 
-return (
+  return (
     <BrowserRouter>
       <AppNavbar />
       <Routes>
@@ -57,7 +57,10 @@ return (
             <Route path="/editexp/:eid" element={<EditExp />} />
             <Route path="/editlink" element={<EditGithub />} />
             <Route path="/fullJobDescription" element={<JobDescription />} />
-            <Route path="/job-listings" element={<JobListings />} />
+            <Route path="/jobListings" element={<JobListings />} />
+            <Route path="/createJobListings" element={<CreateJobListings />} />
+            <Route path="/companyListings" element={<CompanyJobListings />} />
+            <Route path="/companyProfilePage" element={<CompanyProfile />} />
           </>
         )}
       </Routes>

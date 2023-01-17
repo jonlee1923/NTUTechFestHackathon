@@ -61,10 +61,10 @@ function Login() {
   const handleUserModeclick = () => {
     setIsUserMode(!isUserMode);
     if (isUserMode) {
-      setApiMode('users')
+      setApiMode('company')
     }
     else{
-      setApiMode('company')
+      setApiMode('users')
     }
   };
 

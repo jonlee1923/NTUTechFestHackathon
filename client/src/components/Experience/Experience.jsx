@@ -42,12 +42,13 @@ const Experience = () => {
                 <p>{experience.position}</p>
                 <p>{experience.country}</p>
                 <p>
-                  {experience.datestart}-{experience.dateend}
+                  {experience.datestart} to {experience.dateend}
                 </p>
                 <p>{experience.description}</p>
               </div>
             );
           })}
+          <hr/>
         </Container>
       )}
     </div>

@@ -3,12 +3,7 @@ const router = express.Router();
 const {
     getJobs, getCompanyJobs, applyJob, createJob, deleteJob
 } = require('../controllers/jobsController')
-    getJobs,
-    getCompanyJobs,
-    applyJob,
-    createJob,
-    deleteJob,
-} = require("../controllers/jobsController");
+    
 // const { protect } = require('../middleware/authMiddleware')
 
 router.get('/', getJobs)

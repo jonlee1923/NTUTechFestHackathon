@@ -9,6 +9,8 @@ import classes from "./Skills.module.css";
 
 const Skills = (props) => {
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
+    const [jobListing, setJobListing] = useState("");
+    const [recommendation, setRecommendation] = useState("");
     const [skills, setSkills] = useState("");
 
     const handleSubmit = async (event) => {
@@ -24,8 +26,25 @@ const Skills = (props) => {
                 }),
             })
                 .then((res) => res.json())
-                .then((response) => console.log(response));
+                .then((response) => {
+                    setRecommendation(response.prediction);
+                    console.log(response);
+                });
+
+
         } catch (err) {}
+    };
+
+    // const fetchJobs = async () => {
+    //     let url = "http://localhost:5000/api/jobs";
+    //     // fetch job listings
+    //     const response = await sendRequest(url);
+    //     // console.log(response);
+    //     setJobListing(response.jobs);
+    // };
+
+    const skillsChange = (event) => {
+        setSkills(event.target.value);
     };
 
     return (
@@ -47,7 +66,18 @@ const Skills = (props) => {
                         />
                     </a>
                 </Col>
-                <button onClick={handleSubmit}>Test</button>
+                <p></p>
+                <p></p>
+                <Card className={classes.sidecard} xs={4}>
+                    <Card.Title>Please input your top 5 skills!</Card.Title>
+                    <Card.Body>
+                        <input value={skills} onChange={skillsChange}></input>
+                        <button onClick={handleSubmit}>Recommend</button>
+                    </Card.Body>
+                    {recommendation && (
+                        <Card.Title>{recommendation}</Card.Title>
+                    )}
+                </Card>
             </Row>
         </Container>
     );

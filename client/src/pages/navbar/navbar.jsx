@@ -24,7 +24,7 @@ function AppNavbar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav className="me-auto">
-            <Nav.Link href="/job-listings">Job-Listing</Nav.Link>
+            <Nav.Link href="/jobListings">Job-Listing</Nav.Link>
             <Nav.Link href="#link">Career Options</Nav.Link>
           </Nav>
           {/* <Form className="d-flex">

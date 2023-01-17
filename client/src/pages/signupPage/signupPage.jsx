@@ -14,7 +14,9 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isUserMode, setIsUserMode] = useState(true);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const [apiMode, setApiMode] = useState('users')
 
   const [show, setShow] = useState(false);
 
@@ -37,9 +39,22 @@ function Signup() {
     setConfirmPassword(event.target.value);
   };
 
+  const handleUserModeclick = () => {
+    setIsUserMode(!isUserMode);
+    console.log(isUserMode);
+    if (isUserMode) {
+      setApiMode('users')
+    }
+    else{
+      setApiMode('company')
+    }
+    console.log('api mode is '+apiMode)
+  };
+
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
+      console.log('api mode in' + apiMode);
       if (password !== confirmPassword) {
         handleShow();
 
@@ -54,7 +69,7 @@ function Signup() {
         "Content-Type": "application/json",
       };
       const responseData = await sendRequest(
-        "http://localhost:5000/api/users/signup",
+        `http://localhost:5000/api/${apiMode}/signup`,
         "POST",
         body,
         headers
@@ -114,6 +129,17 @@ function Signup() {
             <Button variant="outline-primary" type="submit">
               Signup
             </Button>
+            &nbsp;
+            <Button
+              variant="secondary"
+                onClick={() => {
+                handleUserModeclick();
+                }} 
+                >
+              {isUserMode ? "Signup as company" : "Signup as user"}
+            </Button>
+            
+
           </form>
         </Col>
         <Col xs={7}>

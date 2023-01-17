@@ -1,6 +1,8 @@
 const asyncHandler = require("express-async-handler");
 const Job = require("../models/jobModel");
 const Company = require("../models/companyModel");
+const mongoose = require("mongoose");
+
 // @desc    Get jobs data
 // @route   GET /api/jobs
 // @access  public

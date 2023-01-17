@@ -15,6 +15,10 @@ import EditEduList from "./pages/editEducation/editEducationList";
 import EditEdu from "./pages/editEducation/editEducation";
 import EditExpList from "./pages/editExperience/editExperienceList";
 import EditExp from "./pages/editExperience/editExperience";
+import CreateJobListings from "./pages/createJobListingPage/createJobListingPage";
+import CompanyProfile from "./pages/companyPage/companyPage";
+import CompanyJobListings from "./pages/companyJobListingPage/companyJobListingPage";
+
 
 import { AuthContext } from "./context/authContext";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
@@ -33,7 +37,7 @@ function App() {
     }
   }, [isLoggedIn]);
 
-  return (
+return (
     <BrowserRouter>
       <AppNavbar />
       <Routes>

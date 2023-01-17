@@ -13,9 +13,12 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-
+  const [isUserMode, setIsUserMode] = useState(true);
   const [show, setShow] = useState(false);
+  const [apiMode, setApiMode] = useState('users')
 
+  
+  
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
@@ -28,7 +31,7 @@ function Login() {
     try {
       event.preventDefault();
       // Send a request to the server with the email and password
-      let url = "http://localhost:5000/api/users/login";
+      let url = `http://localhost:5000/api/${apiMode}/login`;
       let method = "POST";
       let body = JSON.stringify({
         email: email,
@@ -39,9 +42,30 @@ function Login() {
       };
 
       const response = await sendRequest(url, method, body, headers);
+
+      console.log(response);
       auth.login(response._id, response.token);
-      navigate("/");      
+
+      if (isUserMode)
+      {
+        navigate("/");    
+      }
+      else
+      {
+        navigate("/companyProfilePage");
+      }
+        
     } catch (err) {}
+  };
+
+  const handleUserModeclick = () => {
+    setIsUserMode(!isUserMode);
+    if (isUserMode) {
+      setApiMode('users')
+    }
+    else{
+      setApiMode('company')
+    }
   };
 
   return (
@@ -73,6 +97,16 @@ function Login() {
             <Button variant="outline-primary" type="submit">
               Login
             </Button>
+            &nbsp;
+            <Button
+                onClick={() => {
+                handleUserModeclick();
+                }} 
+                variant="secondary" >
+              {isUserMode ? "Login as company" : "Login as user"}
+            </Button>
+            
+
           </form>
         </Col>
         <Col xs={7}>

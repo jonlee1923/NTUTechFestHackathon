@@ -30,7 +30,8 @@ const Job = (props) => {
         
         // fetch company job listings
         const response = await sendRequest(url, "DELETE");
-        console.log(response);
+        window.location.reload(false);
+        // console.log(response);
     }
 
     let navigate = useNavigate(); 

@@ -1,12 +1,12 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useFocusEffect } from "react";
 import Job from "../renderCompanyJob/renderCompanyJob.jsx";
 import { useHttpClient } from "../../hooks/httpHook";
 import { Container, Form, Button, Pagination, Row, Col } from "react-bootstrap";
 
 import { BiSearchAlt2 } from "react-icons/bi";
 import { CiLocationArrow1 } from "react-icons/ci";
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import classes from "./companyJobListingPage.module.css";
 
@@ -32,6 +32,7 @@ export default function CompanyJobListings() {
         if (state.companyId != null)
             setCompanyId(state.companyId);
     }, []);
+
 
     const fetchJobs = async () => {
         let url = "http://localhost:5000/api/jobs/getjobs/" + "63c57da4d6504a2a89afea4d" //companyId;

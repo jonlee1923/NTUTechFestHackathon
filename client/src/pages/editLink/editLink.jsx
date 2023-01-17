@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { useHttpClient } from "../../hooks/httpHook";
 import { AuthContext } from "../../context/authContext";
 import { Container, Form, Button } from "react-bootstrap";
-import classes from "./editImage.module.css";
+import classes from "./editLink.module.css";
 import { useNavigate } from "react-router-dom";
 
 const EditLink = () => {
@@ -26,7 +26,7 @@ const EditLink = () => {
     });
 
     const responseData = await sendRequest(
-        `http://localhost:5000/api/education/updateEducation/${eid}`,
+        `http://localhost:5000/api/education/updateEducation/${git}`,
         "POST",
         body,
         {

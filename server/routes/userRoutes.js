@@ -24,6 +24,6 @@ router.patch(
 
 router.patch("/updateSkills/:uid", updateSkills)
 
-router.patch("updateGithub/:uid", updateGithub);
+router.post("updateGithub/:uid", updateGithub);
 
 module.exports = router;

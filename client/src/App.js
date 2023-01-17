@@ -16,6 +16,7 @@ import EditEdu from "./pages/editEducation/editEducation";
 import EditExpList from "./pages/editExperience/editExperienceList";
 import EditExp from "./pages/editExperience/editExperience";
 import EditLink from "./pages/editLink/editLink";
+import EditGithub from "./pages/editGithub/editGithub";
 
 import { AuthContext } from "./context/authContext";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
@@ -50,7 +51,7 @@ function App() {
             <Route path="/editedu/:eid" element={<EditEdu />} />
             <Route path="/editexplist" element={<EditExpList />} />
             <Route path="/editexp/:eid" element={<EditExp />} />
-            <Route path="/editlink" element={<EditLink />} />
+            <Route path="/editlink" element={<EditGithub />} />
             <Route path="/fullJobDescription" element={<JobDescription />} />
             <Route path="/job-listings" element={<JobListings />} />
           </>

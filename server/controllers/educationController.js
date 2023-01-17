@@ -56,17 +56,19 @@ const createEducation = asyncHandler(async (req, res) => {
 const updateEducation = asyncHandler(async (req, res) => {
   const eduId = req.params.eid;
 
-  const education = await Education.findOne({ eduId });
+  const education = await Education.findOne({ _id: eduId });
+  console.log(education, eduId)
   const { name, course, datestart, dateend, grade, maxgrade, description } = req.body;
   console.log(req.body);
-  console.log(education,eduId);
-//   education.name = name;
-//   education.course = course;
-//   education.datestart = datestart;
-//   education.dateend = dateend;
-//   education.grade = grade;
-//   education.maxgrade = maxgrade;
-//   education.description = description;
+  console.log(name)
+  // console.log(education,eduId);
+  education.name = name;
+  education.course = course;
+  education.datestart = datestart;
+  education.dateend = dateend;
+  education.grade = grade;
+  education.maxgrade = maxgrade;
+  education.description = description;
 //   console.log(education,eduId);
 
   try {

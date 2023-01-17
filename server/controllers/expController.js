@@ -49,7 +49,7 @@ const updateExp = asyncHandler(async (req, res) => {
     const expId = req.params.expId;
 
     // Check for user email
-    const exp = await Experience.findOne({ expId });
+    const exp = await Experience.findOne({ _id :expId });
     const { name, position, datestart, dateend, country, description } =
         req.body;
     console.log(req.body);

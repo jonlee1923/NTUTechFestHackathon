@@ -31,11 +31,21 @@ const userSchema = mongoose.Schema(
         dp: {
             type: String,
         },
-        
-        education: [{ type: mongoose.Types.ObjectId, required: true, ref: "Education" }],
-        experience: [{ type: mongoose.Types.ObjectId, required: true, ref: "Experience" }],
-        jobs:[{ type: mongoose.Types.ObjectId, required: true, ref: "Job" }],
+        skills: {
+            type: String,
+        },
 
+        education: [
+            { type: mongoose.Types.ObjectId, required: true, ref: "Education" },
+        ],
+        experience: [
+            {
+                type: mongoose.Types.ObjectId,
+                required: true,
+                ref: "Experience",
+            },
+        ],
+        jobs: [{ type: mongoose.Types.ObjectId, required: true, ref: "Job" }],
     },
     {
         timestamps: true,

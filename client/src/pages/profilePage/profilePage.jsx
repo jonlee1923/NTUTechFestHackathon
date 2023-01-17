@@ -79,7 +79,7 @@ function Profile() {
         <Col>
           <Card className={classes.sidecard} xs={4}>
             <Card.Title>
-              Links <EditPencil href="#" />
+              Links <EditPencil href="/editlink" />
             </Card.Title>
             <Card.Body>
               <LinkDetails profile={profile} />

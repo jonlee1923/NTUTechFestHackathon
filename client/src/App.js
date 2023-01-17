@@ -19,6 +19,8 @@ import CreateJobListings from "./pages/createJobListingPage/createJobListingPage
 import CompanyProfile from "./pages/companyPage/companyPage";
 import CompanyJobListings from "./pages/companyJobListingPage/companyJobListingPage";
 
+import EditLink from "./pages/editLink/editLink";
+import EditGithub from "./pages/editGithub/editGithub";
 
 import { AuthContext } from "./context/authContext";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
@@ -53,6 +55,7 @@ return (
             <Route path="/editedu/:eid" element={<EditEdu />} />
             <Route path="/editexplist" element={<EditExpList />} />
             <Route path="/editexp/:eid" element={<EditExp />} />
+            <Route path="/editlink" element={<EditGithub />} />
             <Route path="/fullJobDescription" element={<JobDescription />} />
             <Route path="/job-listings" element={<JobListings />} />
           </>

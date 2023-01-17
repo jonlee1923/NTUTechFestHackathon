@@ -47,7 +47,7 @@ const Education = (props) => {
                 <p className={classes.title}>{education.name}</p>
                 <p>{education.course}</p>
                 <p>
-                  {education.datestart}-{education.dateend}
+                  {education.datestart} to {education.dateend}
                 </p>
                 <p>
                   Grade: {education.grade}/{education.maxgrade}
